@@ -1,0 +1,102 @@
+/*CSS 파일*/
+
+* {
+    font-family: "Do Hyeon", sans-serif;
+}
+
+.wrap {
+    /*로그인 화면 테두리 부분*/
+    position: absolute;
+    border: 1px solid #d3d3d3;
+    border-left: 20px solid #f5f5f5;
+    border-radius: 30px 10px 10px 30px;
+    margin: 100px auto;
+    width: 500px;
+    height: 550px;
+    box-shadow: 7px 7px 7px #b4b4b4;
+    left: 33%;
+}
+
+.loginTitle {
+    /*MapLog 제목 부분*/
+    width: 500px;
+    padding-top: 100px;
+    text-align: center;
+    font-size: large;
+    letter-spacing: 2px;
+}
+
+.loginform {
+    /*ID ~ 로그인 버튼까지의 큰 틀*/
+    position: relative;
+    width: 500px;
+    bottom: 15%;
+    text-align: center;
+    color: #ff6f61;
+}
+
+#loginid,
+#loginpw {
+    /*ID, PW 칸 부분*/
+    width: 40%;
+    height: 35px;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 6px -6px #b4b4b4;
+    margin-bottom: 10px;
+}
+
+.labelid {
+    /*ID 글씨 부분*/
+    font-size: x-large;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.labelpw {
+    /*PW 글씨 부분*/
+    font-size: x-large;
+    margin-left: 15px;
+    margin-right: 2px;
+}
+
+.signupform {
+    /*계정,회원가입 관련 부분*/
+    position: relative;
+    width: 500px;
+    bottom: 10%;
+    text-align: center;
+}
+
+.Button {
+    /*로그인, 회원가입 버튼 부분*/
+    font-size: 20px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 0px 6px 6px -6px #b4b4b4;
+    background-color: #ffdedb;
+    color: #762e27;
+}
+
+.box1 {
+    /*다홍색 책갈피*/
+    background-color: #f86c5f;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    left: 100%;
+    bottom: 30%;
+    box-shadow: 0px 6px 6px -6px #b4b4b4;
+}
+
+.box2 {
+    /*노란색 책갈피*/
+    background-color: #f4d25d;
+    position: relative;
+    width: 50px;
+    height: 30px;
+    left: 100%;
+    bottom: 30%;
+    box-shadow: 0px 6px 6px -6px #b4b4b4;
+}

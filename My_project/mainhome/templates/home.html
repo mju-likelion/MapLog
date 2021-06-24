@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="static/mainhome/favicon.ico">
+        <link rel="stylesheet" href="{% static 'home_css.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+        <title>Main Login</title>
+    </head>
+    <body>
+        <div class="wrap"> <!--wrap: 로그인 화면의 큰 틀-->
+            <div class="loginTitle">
+                <h1 style="color:#FF6F61">MapLog</h1>
+            </div>
+            <div class="box1"></div> <!--box1,2 : 책갈피-->
+            <br>
+            <div class="box2"></div>
+            <div class="loginform"> <!--ID~로그인 버튼까지-->
+                <form action="" method="POST" class="id_pw">
+                    <label for="id" class="labelid">ID</label>
+                    <input type="text" id="loginid">
+                    <br>
+                    <label for="pw" class="labelpw">PW</label>
+                    <input type="password" id="loginpw">
+                    <br>
+                    <br>
+                    <input type="submit" class="Button btn-lg" value="로그인"></input>
+                </form>
+            </div>
+                <br>
+                <br>
+                <br>
+                <div class="signupform"> <!--회원가입폼-->
+                    <p style="color:#FF6F61">계정이 없으신가요?</p>
+                    <input type="button" class="Button btn-lg" value="회원가입"></input>
+                </div>  
+        </div>         
+    </body>
+</html>

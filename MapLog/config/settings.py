@@ -41,7 +41,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'login.apps.LoginConfig',
+    'users.apps.UsersConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

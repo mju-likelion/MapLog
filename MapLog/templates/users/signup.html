@@ -105,7 +105,7 @@
     <body>  <!-- 본문에 직접적으로 드러나는 부분 -->
         <div class = container1>
             <div class = "container2">  
-                <form action = "{% url 'signup' %}" method="POST">
+                <form action = "{% url 'users:signup_page' %}" method="POST">
                     {% csrf_token %}
                     <h6>E-mail</h6> <input type="email" class = "box" name = "email"><br><br>
                     <h6>ID</h6> <input type = "text"  class = "box" name = "myid"><br><br>

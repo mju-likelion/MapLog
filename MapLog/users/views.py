@@ -31,7 +31,7 @@ def signup_page(request):
                 user_name = user_name,
                 user_birth = user_birth
             )
-        user.save()
+            user.save()
     return redirect('users:test_page')
 
     

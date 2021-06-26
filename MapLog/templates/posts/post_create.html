@@ -1,0 +1,65 @@
+<!-- 해나님 작성 코드 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang = "ko">
+  <head> 
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles/post_create.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script     
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>로그 작성 부분</title>
+  </head>
+
+  <body>  
+    <div class = container1>
+      <div class = container2><br>
+        <form action = "logread.html">
+        &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+    
+        <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
+        <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class = "box1" name="title"><br>
+        <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->
+
+        <h6 style="display: inline">날짜 : </h6> <input type="date" class = "box1" name="date"><br>
+        <h6 style="display:inline">음악 : </h6> <input type="text" class = "box1" name="music"><br><br>
+        <h6 style="display:inline">로그 : </h6> <textarea id="log" name="write" class="box2" rows=5></textarea><br>
+        <h6 style="display:inline">사진 : </h6> <input type="file" class="box3" name="photo"><br>
+        
+
+
+        <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
+          &emsp; &nbsp;
+            <fieldset>    <!-- 이미지 체크박스 -->
+              
+              <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
+              <span style='font-size:35px;'>&#128528;</span> <br> &nbsp; &nbsp;
+              <input id="check1" type="radio" name="gener" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp; <!-- name 속성 : 한 개만 선택되도록-->
+              <input id="check2" type="radio" name="gener" value="soso" class="box5"> <br>
+              
+              <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
+              <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
+              <input id="check3" type="radio" name="gener"value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp;
+              <input id="check4" type="radio" name="gener" value="angry" class="box5">
+        
+            </fieldset>
+            
+        </div>
+    
+        <div id = "container3" style='width:150px;float:right;'>   <!-- 버튼 오른쪽 정렬 -->
+            <input type="submit" onclick="getInputValue();" id="submit" class = "box4" value="저장">
+        </div> 
+      </form>
+  </body>
+</html>

@@ -1,8 +1,9 @@
 from django.urls import path
+from django.conf import settings
 from . import views as post_views
 
 app_name = "posts"
 
 urlpatterns = [
-    path("", post_views.post_page, name="post_page"),
+    path("create/", post_views.post_create, name="post_create"),
 ]

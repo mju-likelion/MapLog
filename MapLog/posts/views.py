@@ -9,22 +9,21 @@ def new_post(request):
     return render(request, "posts/post_create.html", {"posts": posts})
 
 
-def detail(request, post_id):
+def post_detail(request, post_id):
     details = get_object_or_404(Posts, pk=post_id)
-    return render(request, "post_detail.html", {"details": details})
+    return render(request, "posts/post_detail.html", {"details": details})
 
 
 def post_create(request):
     post = Posts()
 
-    post.title = request.GET["title"]
-    post.pick_date = request.GET["pick_date"]
+    post.title = request.POST.get("title")
+    post.pick_date = request.POST.get("pick_date")
     post.create_date = timezone.datetime.now()
-    post.music = request.GET["music"]
-    post.mood = request.GET["mood"]
-    post.description = request.GET["description"]
-    post.image = request.FILES["image"]
-
+    post.music = request.POST.get("music")
+    post.mood = request.POST.get("mood")
+    post.description = request.POST.get("description")
+    post.image = request.POST.get("image")
     post.save()
 
     return redirect("/post/" + str(post.id))

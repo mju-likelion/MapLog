@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "ko">
+  <head> 
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="{% static 'styles/post_create.css' %}"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script     
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>로그 디테일</title>
+  </head>
+
+  <body>  
+    <div class = container1>
+      <div class = container2><br>
+        &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+    
+        <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
+        <h6 style="display:inline">제목 : </h6> <p>{{details.title}}</p><br>
+        <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->
+
+        <h6 style="display:inline">날짜 : </h6> <p>{{details.pick_date}}</p>
+        <h6 style="display:inline">기분 : </h6> <p>{{details.mood}}</p>
+        <h6 style="display:inline">음악 : </h6> <p>{{details.music}}</p><br>
+        <h6 style="display:inline">로그 : </h6> <p>{{details.description}}</p><br>
+        <h6 style="display:inline">사진 : </h6> <img src="{{details.image.url}}" height=300><br>
+      </div>
+    </div>
+  </body>
+</html>

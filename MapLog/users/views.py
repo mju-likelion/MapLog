@@ -8,6 +8,15 @@ def test_page(request):
     return render(request, "users/test.html")
 
 def login_page(request):
+    if request.method == 'POST':
+        username = request.POST['userid']
+        password = request.POST['userpw']
+        user = auth.authenticate(request, user_id=username, user_pw=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('users:test.html')
+        else:
+            return render(request, "users/login.html", {'error':'잘못된 입력입니다.'})
     return render(request, "users/login.html")
 
 def signup_page(request):

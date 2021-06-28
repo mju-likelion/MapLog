@@ -18,13 +18,17 @@
 			<br>
 			<div class="box2"></div>
 			<div class="loginform"> <!--ID~로그인 버튼까지-->
-				<form action="" method="POST" class="id_pw">
+				<form action="{% url 'users:login_page' %}" method="POST" class="id_pw">
+					{% csrf_token %}
 					<label for="id" class="labelid">ID</label>
-					<input type="text" id="loginid">
+					<input type="text" id="loginid" name="userid">
 					<br>
 					<label for="pw" class="labelpw">PW</label>
-					<input type="password" id="loginpw">
+					<input type="password" id="loginpw" name="userpw">
 					<br>
+					{% if error %}
+					{{error}}
+					{% endif %}
 					<br>
 					<input type="submit" class="Button btn-lg" value="로그인"></input>
 				</form>

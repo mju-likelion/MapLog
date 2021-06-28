@@ -30,3 +30,7 @@ def post_create(request):
 
 
 # def post_update(request):
+
+
+def map_page(request):
+    return render(request, "posts/post_map.html")

@@ -1,24 +1,34 @@
 import requests
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
-from django.contrib import auth 
 from .models import User
 
 def test_page(request):
     return render(request, "users/test.html")
 
-def login_page(request):
-    if request.method == 'POST':
-        username = request.POST['userid']
-        password = request.POST['userpw']
-        user = auth.authenticate(request, user_id=username, user_pw=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('users:test.html')
-        else:
-            return render(request, "users/login.html", {'error':'잘못된 입력입니다.'})
-    return render(request, "users/login.html")
 
+def login_page(request):
+    if request.method == 'GET':
+        return render(request, "users/login.html")
+
+    if request.method == 'POST':
+        userid = request.POST.get('userid', '')
+        userpw = request.POST.get('userpw', '')
+
+        #ID, PW를 입력하지 않았을 경우
+        if not (userid and userpw):
+            return render(request, "users/login.html", {'error': '아이디와 비밀번호가 입력되지 않았습니다.',})
+
+        users=User.objects.all() #user에 User모델의 요소들 넣기
+
+        for user in users:
+            #입력한 ID와 PW가 User모델의 id, pw와 같을 경우 다음 페이지로
+            if user.user_id == userid and user.user_pw == userpw:
+                return render(request, 'users/test.html')
+            #입력한 ID와 PW가 올바르지 않은 경우
+            if (user.user_id != userid) and (user.user_pw != userpw):
+                return render(request, "users/login.html", {'error': '아이디와 비밀번호가 올바르지 않습니다.',})
+                
+            
 def signup_page(request):
     if request.method == 'GET':
         return render(request, "users/signup.html")

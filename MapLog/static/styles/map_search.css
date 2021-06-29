@@ -15,6 +15,7 @@
   left: 50%;
   margin-left: -150px;
   margin-top: 70px;
+  border-radius: 10px;
 }
 #menu_wrap {
   position: absolute;

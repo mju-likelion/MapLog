@@ -32,5 +32,9 @@ def post_create(request):
 # def post_update(request):
 
 
-def map_page(request):
-    return render(request, "posts/post_map.html")
+def map_search(request):
+    return render(request, "posts/map_search.html")
+
+
+def map_marker(request):
+    return render(request, "posts/map_marker.html")

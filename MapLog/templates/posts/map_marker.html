@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'styles/map_marker.css' %}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	<title>map marker page</title>
+</head>
+<body>
+<div id="map" style="width:640px;height:640px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+<script src="/static/js/map_marker.js"></script>
+</body>
+</html>

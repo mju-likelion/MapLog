@@ -15,6 +15,7 @@ def post_detail(request, post_id):
 
 
 def post_create(request):
+   
     post = Posts()
 
     post.title = request.POST.get("title")
@@ -23,10 +24,11 @@ def post_create(request):
     post.music = request.POST.get("music")
     post.mood = request.POST.get("mood")
     post.description = request.POST.get("description")
-    post.image = request.POST.get("image")
+    post.image = request.FILES['image'] #views.py 업로드오류 해결
     post.save()
-
-    return redirect("/post/" + str(post.id))
+    return redirect("/posts/" + str(post.id)) #config URL오류나서 맞춰서 수정
 
 
 # def post_update(request):
+
+# Create your views here.

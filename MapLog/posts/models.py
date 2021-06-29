@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Posts(models.Model):
     title = models.CharField(max_length=50, null=True)
     pick_date = models.DateField(null=True)
@@ -11,4 +12,4 @@ class Posts(models.Model):
     image = models.ImageField(upload_to="images/", null=True)
 
     def __str__(self):
-        return self.title
+        return str(self.title) #__str__오류 수정

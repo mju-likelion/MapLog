@@ -26,9 +26,9 @@
   <body>  
     <div class = container1>
       <div class = container2><br>
-        <form action="{% url 'posts:post_create' %}">
+        <form action="{% url 'posts:post_create' %}" method="POST" enctype="multipart/form-data">
           &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
-      
+          {% csrf_token %}
           <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
           <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class="box1" name="title"><br>
           <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->

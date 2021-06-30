@@ -12,7 +12,8 @@ var content = '<div class="overlaybox">' +
     `    <img src="../../static/images/marker_ex.png">` +
     '  </div>';
 
-// 커스텀 오버레이가 표시될 위치입니다 
+// 커스텀 오버레이가 표시될 위치입니다
+// 아이디어톤 - 임시 마커
 var position = [
     new kakao.maps.LatLng(37.51332036170739, 127.10014089376925),
     new kakao.maps.LatLng(37.22187253030484, 127.18661951180192),

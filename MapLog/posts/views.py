@@ -31,4 +31,10 @@ def post_create(request):
 
 # def post_update(request):
 
-# Create your views here.
+
+def map_search(request):
+    return render(request, "posts/map_search.html")
+
+
+def map_marker(request):
+    return render(request, "posts/map_marker.html")

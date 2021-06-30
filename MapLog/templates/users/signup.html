@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang = "ko">
+
+    <head>     <!-- 본문에 직접적으로 드러나지 않는 부분 -->
+        <meta charset="utf-8">
+        <script     
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+        <title>회원가입창</title>
+
+        <style>
+        @import url('https://fonts.google.com/specimen/Hi+Melody?subset=korean&sort=date'); /* 폰트 지정 */
+        .himelody {font-family:'Hi Melody', cursive; }  /* font-family : 페이지 전체에 적용 */
+        
+
+        .container1 {   /* 책 테두리 */
+            
+            display:block;
+        
+            border:0.2px solid rgb(143, 140, 140);
+            border-radius:55px 20px 20px 55px;  /* 모서리별 둥글게 (상단 왼쪽부터 시작해서 시계방향) */
+        
+            box-shadow:28px 18px 30px 3px rgba(12, 12, 12, 0.2), 5px 1px 20px rgba(12, 12, 12, 0.2);            
+            /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
+            /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+        
+            padding:105px;                    /* 칸 높이*/
+            width:730px;                     /* 칸 길이 */
+            margin-left:auto;
+            margin-right:auto;        /* 박스 좌우 정렬 */    
+            margin-top:65px; margin-bottom:5px;
+            
+            border-color:rgb(236, 231, 231);
+
+        }
+
+        .container2 {    /* E-mail~B-day 관련 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border: 2px solid rgb(187, 180, 180); */
+        }
+
+        .container3 {     /* 회원가입 관련 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+        
+            margin-block-end: -50px;
+            /* border: 2px solid rgb(187, 180, 180); */
+        }
+
+        .box {      /* E-mail~B-day 박스 관련 */
+            display:inline-block;
+            border:2px solid rgb(233, 226, 226);
+            border-radius:13px;
+        
+            box-shadow:3px 5px 3px         /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+            rgba(162, 159, 159, 0.4);      /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+            
+            padding:14px;                    /* 칸 높이*/
+            width:400px;                     /* 칸 길이 */
+            margin-top:3px;
+            text-align:start;                /* B-day (년-월-일) 위치 지정*/
+            padding-left: 9px;               /* B-day (년-월-일) 패딩 지정*/
+
+            font-weight:bold;
+            font-size:14px;
+            color:rgb(122, 118, 118);
+            border-color:rgb(186, 177, 177);
+        }
+    
+        .box2 {  /* 회원가입 버튼 */
+            border: 0.1px solid rgb(222, 223, 216);
+            border-radius:18px;
+            background-color: hsl(18, 80%, 90%);
+            box-shadow:3px 3px 5px rgba(202, 201, 201, 0.9); 
+            width:130px;    /* 버튼 길이 */
+            padding:5px;    /* 버튼 높이 */
+            text-align:center;
+            color:rgb(160, 48, 67);
+            font-size:20px;
+            font-weight:bolder;
+            
+        }
+
+        h6 {
+            display:block;
+            width:300px;
+            margin:0, auto;
+            color:#f06d3d;
+    
+            font-size :23px;
+        }
+        </style>
+    </head>
+    <body>  <!-- 본문에 직접적으로 드러나는 부분 -->
+        <div class = container1>
+            <div class = "container2">  
+                <form action = "{% url 'users:signup_page' %}" method="POST">
+                    {% csrf_token %}
+                    <h6>E-mail</h6> <input type="email" class = "box" name = "email"><br><br>
+                    <h6>ID</h6> <input type = "text"  class = "box" name = "myid"><br><br>
+                    <h6>Password</h6> <input type = "password" class="box" name = "mypw"><br><br>  <!-- 'password' 형식은 입력받을 때 **로 보이도록 -->
+                    <h6>Name</h6> <input type="text"  class = "box" name="name"><br><br>
+                    <h6>B-day</h6> 
+                    <input type="date"  class = "box" name="birthday"><p><br>
+                    <div class = "container3">
+                        <input type="submit" class = "box2" value="회원가입">
+                    </div> 
+                </form> 
+             </div>
+        </div>
+     </body>
+</html>

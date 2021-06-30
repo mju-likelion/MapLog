@@ -18,13 +18,17 @@
 			<br>
 			<div class="box2"></div>
 			<div class="loginform"> <!--ID~로그인 버튼까지-->
-				<form action="" method="POST" class="id_pw">
+				<form action="{% url 'users:login_page' %}" method="POST" class="id_pw">
+					{% csrf_token %}
 					<label for="id" class="labelid">ID</label>
-					<input type="text" id="loginid">
+					<input type="text" id="loginid" name="userid">
 					<br>
 					<label for="pw" class="labelpw">PW</label>
-					<input type="password" id="loginpw">
+					<input type="password" id="loginpw" name="userpw">
 					<br>
+					{% if error %}
+					{{error}}
+					{% endif %}
 					<br>
 					<input type="submit" class="Button btn-lg" value="로그인"></input>
 				</form>
@@ -34,7 +38,7 @@
 			<br>
 			<div class="signupform"> <!--회원가입폼-->
 				<p style="color:#FF6F61">계정이 없으신가요?</p>
-				<input type="button" class="Button btn-lg" value="회원가입"></input>
+				<input type="button" class="Button btn-lg" value="회원가입" onclick="location.href='{%url 'users:signup_page'%}'"></input>
 			</div>  
 		</div>         
 	</body>

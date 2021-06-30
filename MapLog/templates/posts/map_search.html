@@ -1,0 +1,36 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/map_search.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <div class="map_wrap">
+    <div id="map" style="width:100%;height:95%;"></div>
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            장소검색 : <input type="text" value="" id="keyword" size="15"> 
+            <button type="submit">검색</button> 
+          </form>
+        </div>
+      </div>
+      <hr>
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+	<script src="/static/js/map_search.js"></script>
+{% endblock javascript %}

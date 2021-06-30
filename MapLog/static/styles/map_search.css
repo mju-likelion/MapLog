@@ -11,20 +11,13 @@
   color: #000;
   text-decoration: none;
 }
-#map {
-  left: 50%;
-  margin-left: -150px;
-  margin-top: 70px;
-  border-radius: 10px;
-}
 #menu_wrap {
   position: absolute;
-  top: 70px;
-  left: 300px;
+  top: 5rem;
+  left: 5rem;
   bottom: 0;
-  width: 250px;
-  margin: 10px 0 30px 10px;
-  padding: 5px;
+  width: 18rem;
+  margin: 10px 10px 10px 10px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.7);
   z-index: 1;

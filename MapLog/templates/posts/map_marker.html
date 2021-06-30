@@ -2,6 +2,7 @@
 
 {% block css %}
 	<link rel="stylesheet" href="{% static 'styles/map_marker.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" />
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
 {% endblock %} 
@@ -11,7 +12,7 @@
 {% endblock %} 
 
 {% block content %}
-	<div id="map" style="width: 640px; height: 640px"></div>
+	<div id="map" style="width:100%;height:95%;"></div>
 {% endblock %} 
 
 {% block javascript %}

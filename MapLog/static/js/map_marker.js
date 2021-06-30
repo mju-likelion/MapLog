@@ -1,7 +1,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.502, 127.026581), // 지도의 중심좌표
-        level: 50 // 지도의 확대 레벨
+        level: 10 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -17,10 +17,11 @@ var content = '<div class="overlaybox">' +
 var position = [
     new kakao.maps.LatLng(37.51332036170739, 127.10014089376925),
     new kakao.maps.LatLng(37.22187253030484, 127.18661951180192),
-    new kakao.maps.LatLng(37.77316425787717, 128.94725588570472),
-    new kakao.maps.LatLng(35.15317692666829, 129.11865457954067),
-    new kakao.maps.LatLng(33.252624335746745, 126.41435869540499),
-    new kakao.maps.LatLng(36.37217758681988, 127.3603859967918),
+    new kakao.maps.LatLng(37.76033162822751, 127.0764170077906),
+    new kakao.maps.LatLng(37.44875057945972, 126.45107867359248),
+    new kakao.maps.LatLng(37.79340558796354, 127.5244481263201),
+    new kakao.maps.LatLng(37.58339973306273, 128.3256722978949),
+    new kakao.maps.LatLng(37.55883386958059, 126.80292857780141),
 ]  
 
 for(var i = 0; i < position.length; i++) {

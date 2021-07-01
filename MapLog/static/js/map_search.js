@@ -25,7 +25,7 @@ function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
     // 한 페이지에 보여질 목록 개수 수정
     var options = {
-        size: 8
+        size: 7
     }
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {

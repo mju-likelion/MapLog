@@ -13,10 +13,11 @@
 }
 #menu_wrap {
   position: absolute;
-  top: 5rem;
+  top: 10vh;
   left: 5rem;
   bottom: 0;
   width: 18rem;
+  height: 80vh;
   margin: 10px 10px 10px 10px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.7);

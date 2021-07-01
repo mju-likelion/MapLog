@@ -14,10 +14,12 @@
 {% block content %}
   <!-- 왼쪽 메뉴바는 공통된 거라서 나중에 합쳐도 될 듯 -->
 	<div class="menubar">
-    <div><img src="../../static/images/profile_pic.png"></div>
-    <div class="menu selected">회원 정보</div>
-    <div class="menu">날짜별로 모아보기</div>
-    <div class="menu">기분별로 모아보기</div>
+    <img src="../../static/images/profile_pic.png">
+    <div class="menu">
+      <a class="selected" href="#">회원 정보</a>
+      <a href="#">날짜별로 모아보기</a>
+      <a href="#">기분별로 모아보기</a>
+    </div>
   </div>
 
   <div class="info__container">

@@ -1,3 +1,47 @@
 * {
   font-family: 'Do Hyeon', sans-serif;
 }
+
+.menubar {
+  position: absolute;
+  width: 48vh;
+  height: 85%;
+  left: 15vh;
+  background-color: #fff1f0;
+}
+
+.menubar img {
+  position: absolute;
+  width: 25vh;
+  height: 25vh;
+  left: 25%;
+  top: 10%;
+}
+
+.menu {
+  position: absolute;
+  left: 8.5vh;
+  top: 40vh;
+  text-align: center;
+}
+
+.menu a {
+  color: #762e27;
+  font-size: 3vh;
+  text-decoration: none;
+  display: block;
+  margin: 5vh;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.info__container {
+  position: absolute;
+  width: 120vh;
+  height: 85%;
+  left: 65vh;
+  background-color: #fff1f0;
+  display: inline-block;
+}

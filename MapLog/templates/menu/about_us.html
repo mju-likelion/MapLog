@@ -1,0 +1,89 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/about_us.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <div class="content__container">
+    <div class="head__container inline size">
+      <h1>MapLog</h1>
+      <h3 class="spacing">장소와 함께 그 날의 모든 추억을 저장하는 MapLog 입니다</h3>
+      <br>
+    </div>
+    
+    <div class="text__container spacing inline">
+      <p>MapLog를 사용하면 매순간 저장하고 싶은 장소의 기억을 기록할 수 있습니다.</p>
+      <p>MapLog에서는 장소뿐만 아니라 그 날의 사진, 기분, 추억을 기록할 수 있습니다. 그러니 기분이 좋을 때든 슬플 때든 언제나 MapLog가 제공하는 플랫폼을 이용해보세요.</p>
+      <p>특별한 곳에서의 여행, 행사 뿐만 아니라 학교에서 공부를 한 것도 언젠간 추억이 될 거예요!</p>
+      <p>MapLog를 통해 삶의 소중한 추억들을 더하세요. Premium에 가입하거나 무료로 이용하세요.</p>
+      <br> <br>
+    </div>
+    
+    <div class="team__container spacing inline size">
+      <h2>MapLog 팀은요,,</h2>
+      <div class="member inline">
+        <img src="../../static/images/som_memoji.png">
+        <p>김해나</p>
+        <p>명지대학교 정보통신공학과</p>
+        <div class="icons">
+          <a href="https://github.com/kimhn0605" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+
+      <div class="member inline">
+        <img src="../../static/images/som_memoji.png">
+        <p>김수정</p>
+        <p>명지대학교 정보통신공학과</p>
+        <div class="icons">
+          <a href="https://github.com/JJongsKim" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+
+      <div class="member inline">
+        <img src="../../static/images/som_memoji.png">
+        <p>나다빈</p>
+        <p>명지대학교 전자공학과</p>
+        <div class="icons">
+          <a href="https://github.com/ekqls3659" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+
+      <div class="member inline">
+        <img src="../../static/images/som_memoji.png">
+        <p>박소민</p>
+        <p>명지대학교 컴퓨터공학과</p>
+        <div class="icons">
+          <a href="https://github.com/sominparrrk" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+          <a href="https://www.instagram.com/sominparrrk/" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="https://www.linkedin.com/in/sominparrrk/" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="location inline">
+    <h2>MapLog HQ</h2>
+    <div id="map" style="width:400px;height:400px;"></div>
+    <p class="address">경기도 용인시 처인구 명지로 116</p>
+    <p class="contact">maplog@email.com</p>
+  </div>
+  
+{% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+	<script src="/static/js/hq_location.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+{% endblock javascript %}
+

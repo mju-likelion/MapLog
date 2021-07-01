@@ -4,8 +4,8 @@ from django.conf import settings
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("login/", include("users.urls", namespace="login")),
+    path("admin/", admin.site.urls),
+    path("users/", include("users.urls", namespace="users")),
     path("posts/", include("posts.urls", namespace="posts")),
 ]
 

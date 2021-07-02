@@ -136,3 +136,10 @@ button {
   cursor: pointer;
   opacity: 100%;
 }
+
+footer {
+  width: 100%;
+  text-align: center;
+  color: #b2b2b2;
+  background: white;
+}

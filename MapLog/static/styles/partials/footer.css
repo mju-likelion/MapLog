@@ -1,8 +1,9 @@
 .footer__container {
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: #8a8080;
+  color: #b2b2b2;
   background: white;
 }

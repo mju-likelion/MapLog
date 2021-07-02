@@ -53,4 +53,6 @@ def signup_page(request):
             user.save()
     return redirect('users:test_page')
 
-    
+# MY PAGE
+def info_page(request):
+    return render(request, "users/my_page/acc_info.html")

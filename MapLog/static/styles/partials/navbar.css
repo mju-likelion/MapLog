@@ -9,22 +9,25 @@ body {
 
 nav {
   width: 100%;
-  height: 5em;
+  height: 10vh;
 }
 
 .logo {
-  width: 3rem;
-  height: 3rem;
-  margin-top: 1em;
-  margin-left: 10em;
+  position: absolute;
+  width: 6vh;
+  height: 6vh;
+  top: 2vh;
+  left: 18vh;
 }
 
 .category {
+  position: absolute;
   display: inline;
-  color: FF6F61;
+  color: #ff6f61;
   float: right;
-  font-size: 1.5rem;
-  margin: 1em 7em 0.5em 0;
+  font-size: 3vh;
+  top: 3vh;
+  right: 18vh;
 }
 
 .category a {

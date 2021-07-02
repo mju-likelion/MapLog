@@ -1,0 +1,46 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/acc_info.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <!-- 왼쪽 메뉴바는 공통된 거라서 나중에 합쳐도 될 듯 -->
+	<div class="menubar">
+    <img src="../../static/images/profile_pic.png">
+    <div class="menu">
+      <a class="selected" href="#">회원 정보</a>
+      <a href="#">날짜별로 모아보기</a>
+      <a href="#">기분별로 모아보기</a>
+    </div>
+  </div>
+
+  <div class="info__container">
+    <div class="title">회원 정보</div>
+    <div class="content">
+      <div class="key">이름</div>
+      <div class="value">홍길동</div>
+    
+      <div class="key">이메일</div>
+      <div class="value">gildonghong@gmail.com</div>
+    
+      <div class="key">아이디</div>
+      <div class="value">gildong@gmail.com</div>
+    
+      <div class="key">생년월일</div>
+      <div class="value">2000.01.01</div>
+    </div>
+  </div>
+{% endblock %} 
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 

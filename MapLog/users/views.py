@@ -59,3 +59,6 @@ def info_page(request):
 
 def by_date_page(request):
     return render(request, "users/my_page/by_date.html")
+
+def by_mood_page(request):
+    return render(request, "users/my_page/by_mood.html")

@@ -53,4 +53,12 @@ def signup_page(request):
             user.save()
     return redirect('users:test_page')
 
-    
+# MY PAGE
+def info_page(request):
+    return render(request, "users/my_page/acc_info.html")
+
+def by_date_page(request):
+    return render(request, "users/my_page/by_date.html")
+
+def by_mood_page(request):
+    return render(request, "users/my_page/by_mood.html")

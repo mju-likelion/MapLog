@@ -56,3 +56,6 @@ def signup_page(request):
 # MY PAGE
 def info_page(request):
     return render(request, "users/my_page/acc_info.html")
+
+def by_date_page(request):
+    return render(request, "users/my_page/by_date.html")

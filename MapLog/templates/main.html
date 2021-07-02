@@ -1,0 +1,52 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <div class="main__container">
+    <div class="main__copywrite">
+      <h1>그 때의 장소</h1>
+      <h1>그 때의 기분</h1>
+      <h1>그 때의 모든 것</h1>
+    </div>
+    <img src="../static/images/writing_illustration.png">
+    <span class="favicon"><i class="fas fa-chevron-down"></i></span>
+  </div>
+
+  <div class="sub__container">
+    <div class="sub__copywrite">
+      <h1>유럽 여행, 학창시절의 추억</h1>
+      <h1>지도안에 담아 보고 싶다면?</h1>
+      <h1>MapLog !</h1>
+    </div>
+    <img src="../static/images/map_searching_illustration.png">
+    <span class="favicon"><i class="fas fa-chevron-down"></i></span>
+  </div>
+
+  <div class="pr__container">
+    <div class="pr__message">
+      <h1>가입하지 않을래요?😬</h1>
+      <a href="/users/sign-up"><button>가입하러 가기</button></a>
+      <span class="favicon"><i class="fas fa-caret-square-up"></i></span>
+    </div>
+  </div>
+{% endblock %} 
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %}
+
+{% block javascript %}
+	<script src="/static/js/main.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+{% endblock javascript %}

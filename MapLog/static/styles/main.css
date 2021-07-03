@@ -1,0 +1,145 @@
+* {
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+/* MAIN */
+.main__container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff1f0;
+  color: #440600;
+}
+
+.main__container img {
+  position: absolute;
+  top: 30vh;
+  left: 110vh;
+  width: 60vh;
+  height: 60vh;
+}
+
+.main__container .favicon {
+  position: relative;
+  font-size: 7vh;
+  opacity: 40%;
+  text-align: center;
+  top: 80vh;
+  left: 50%;
+  transition: color 0.3s ease-in-out;
+}
+
+.main__container .favicon:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.main__copywrite {
+  position: absolute;
+  margin: 0;
+  top: 20vh;
+  left: 30vh;
+}
+
+.main__copywrite h1 {
+  margin: 0;
+  font-size: 8vh;
+}
+
+/* SUB */
+
+.sub__container {
+  width: 100%;
+  height: 100%;
+  color: #ff6f61;
+}
+
+.sub__container img {
+  position: absolute;
+  width: 80vh;
+  height: 80vh;
+  top: 130vh;
+  left: 20vh;
+}
+
+.sub__container .favicon {
+  position: relative;
+  font-size: 7vh;
+  opacity: 40%;
+  text-align: center;
+  top: 90vh;
+  left: 50%;
+  transition: color 0.3s ease-in-out;
+}
+
+.sub__container .favicon:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.sub__copywrite {
+  position: absolute;
+  margin: 0;
+  top: 120vh;
+  left: 100vh;
+  text-align: right;
+}
+
+.sub__copywrite h1 {
+  font-size: 6vh;
+  line-height: 80%;
+}
+
+/* PR */
+
+.pr__container {
+  width: 100%;
+  height: 94%;
+  background-color: #fff1f0;
+  color: #440600;
+}
+
+.pr__message {
+  position: relative;
+  text-align: center;
+  top: 35vh;
+  font-size: 5vh;
+}
+
+button {
+  width: 20vh;
+  height: 5vh;
+  font-size: 3vh;
+  color: #440600;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 6px 6px -6px #b4b4b4;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.pr__message button:hover {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.pr__container .favicon {
+  position: absolute;
+  font-size: 8vh;
+  opacity: 40%;
+  top: 40vh;
+  left: 90%;
+  transition: color 0.3s ease-in-out;
+}
+
+.pr__container .favicon:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  color: #b2b2b2;
+  background: white;
+}

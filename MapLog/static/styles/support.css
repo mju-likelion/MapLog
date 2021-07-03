@@ -1,0 +1,60 @@
+* {
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.support__container {
+  background-color: #fff1f0;
+  color: #440600;
+  padding: 6vh 0 6vh 0;
+}
+
+.search__container {
+  text-align: center;
+}
+
+.search__container h1 {
+  font-size: 5vh;
+  letter-spacing: 2vh;
+}
+
+.search__container input {
+  width: 80vh;
+  height: 5vh;
+  border: none;
+  font-size: 2vh;
+  letter-spacing: 1vh;
+}
+
+.faq__container {
+  text-align: center;
+  padding: 3vh 0 3vh 0;
+}
+
+.faq__container .faq {
+  display: inline-block;
+  margin: 0 2vh 0 2vh;
+}
+
+.support__menu {
+  text-align: center;
+  color: #440600;
+}
+
+.menu__container {
+  display: inline-block;
+  margin: 6vh 7vh 0 7vh;
+}
+
+a {
+  text-decoration: none;
+  color: #440600;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  line-height: 200%;
+}

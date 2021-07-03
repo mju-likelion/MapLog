@@ -9,4 +9,6 @@ urlpatterns = [
     path("test/", user_views.test_page, name="test_page"),
     # MY PAGE
     path("my-page/acc-info", user_views.info_page, name="info_page"),
+    path("my-page/by-date", user_views.by_date_page, name="by_date_page"),
+    path("my-page/by-mood", user_views.by_mood_page, name="by_mood_page"),
 ]

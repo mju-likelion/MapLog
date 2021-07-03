@@ -1,0 +1,67 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/by_mood.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <div class="menubar">
+    <img src="../../static/images/profile_pic.png">
+    <div class="menu">
+      <a href="/users/my-page/acc-info">회원 정보</a>
+      <a href="/users/my-page/by-date">날짜별로 모아보기</a>
+      <a class="selected" href="/users/my-page/by-mood">기분별로 모아보기</a>
+    </div>
+  </div>
+
+  <div class="info__container">
+    <div class="title">기분별로 모아보기</div>
+    <div class="content">
+      <form>
+        <label>😀<input type="radio" id="happy" name="happy" value="happy"></label>    
+        <label>😢<input type="radio" id="sad" name="sad" value="sad"></label>
+        <label>😡<input type="radio" id="angry" name="angry" value="angry"></label>
+        <label>😍<input type="radio" id="love" name="love" value="love"></label>
+        <button type="submit">검색</button>
+      </form>
+
+      <div class="gallery">
+        <div class="row">
+          <img src="../../static/images/dummy/dummy_1.png">
+          <img src="../../static/images/dummy/dummy_2.png">
+          <img src="../../static/images/dummy/dummy_3.png">
+          <img src="../../static/images/dummy/dummy_4.png">
+          <img src="../../static/images/dummy/dummy_5.png">
+        </div>
+
+        <div class="row">
+          <img src="../../static/images/dummy/dummy_5.png">
+          <img src="../../static/images/dummy/dummy_4.png">
+          <img src="../../static/images/dummy/dummy_2.png">
+          <img src="../../static/images/dummy/dummy_1.png">
+          <img src="../../static/images/dummy/dummy_3.png">
+        </div>
+
+        <div class="row">
+          <img src="../../static/images/dummy/dummy_3.png">
+          <img src="../../static/images/dummy/dummy_1.png">
+          <img src="../../static/images/dummy/dummy_5.png">
+          <img src="../../static/images/dummy/dummy_2.png">
+          <img src="../../static/images/dummy/dummy_4.png">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %} 
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 

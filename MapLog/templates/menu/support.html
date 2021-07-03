@@ -1,0 +1,82 @@
+{% load static %} 
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/support.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+{% block content %}
+  <div class="support__container">
+
+    <div class="search__container">
+      <h1>무엇을 도와드릴까요?</h1>
+      <input type="text" id="support_search" name="support_search" placeholder="🔍검색하기">
+    </div>
+
+    <div class="faq__container">
+      <div class="faq">
+        <h3>계정 도움말</h3>
+        <a href="#">로그인 세부 정보를 기억할 수 없어요</a>
+      </div>
+
+      <div class="faq">
+        <h3>업로드 도움말</h3>
+        <a href="#">로그가 업로드 되지 않아요</a>
+      </div>
+
+      <div class="faq">
+        <h3>결제 도움말</h3>
+        <a href="#">프리미엄 결제가 되지 않아요</a>
+      </div>
+
+      <div class="faq">
+        <h3>기기 도움말</h3>
+        <a href="#">어느 기기에서 사용할 수 있나요</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="support__menu">
+    <div class="menu__container">
+      <h2>계정 & 결제</h2>
+      <ul>
+        <li><a href="#">계정 도움말</a></li>
+        <li><a href="#">결제 도움말</a></li>
+        <li><a href="#">프리미엄 옵션</a></li>
+        <li><a href="#">개인정보 및 보안</a></li>
+      </ul>
+    </div>
+
+    <div class="menu__container">
+      <h2>MapLog 사용하기</h2>
+      <ul>
+        <li><a href="#">로그 업로드하기</a></li>
+        <li><a href="#">로그 수정하기</a></li>
+        <li><a href="#">로그 읽기</a></li>
+        <li><a href="#">로그 삭제하기</a></li>
+      </ul>
+    </div>
+
+      <div class="menu__container">
+        <h2>어디서나 업로드하기</h2>
+        <ul>
+          <li><a href="#">PC 웹 브라우저</a></li>
+          <li><a href="#">모바일 웹 브라우저</a></li>
+          <li><a href="#">안드로이드 모바일 앱</a></li>
+          <li><a href="#">iOS 모바일 앱</a></li>
+        </ul>
+      </div>
+
+  </div>
+{% endblock %}
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 

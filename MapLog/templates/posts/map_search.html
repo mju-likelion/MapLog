@@ -2,6 +2,7 @@
 
 {% block css %}
 	<link rel="stylesheet" href="{% static 'styles/map_search.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/map_posting.css' %}" />
   <link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
 	<link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -27,6 +28,50 @@
       <hr>
       <ul id="placesList"></ul>
       <div id="pagination"></div>
+    </div>
+  </div>
+
+  <!--포스팅 레이어모달 될 부분-->
+  <div class="post_modal" id="modal">
+    <div class = container1>
+      <div class = container2><br>
+        <form action="{% url 'posts:post_create' %}" method="POST" enctype="multipart/form-data">
+          &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+          {% csrf_token %}
+          <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
+          <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class="box1" name="title"><br>
+          <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->
+
+          <h6 style="display: inline">날짜 : </h6> <input type="date" class="box1" name="pick_date"><br>
+          <h6 style="display:inline">음악 : </h6> <input type="text" class="box1" name="music"><br><br>
+          <h6 style="display:inline">로그 : </h6> <textarea id="log" class="box2" name="description" rows=5></textarea><br>
+          <h6 style="display:inline">사진 : </h6> <input type="file" class="box3" name="image"><br>
+          
+
+
+          <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
+            &emsp; &nbsp;
+              <fieldset>    <!-- 이미지 체크박스 -->
+                
+                <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
+                <span style='font-size:35px;'>&#128528;</span> <br> &nbsp; &nbsp;
+                <input id="check1" type="radio" name="gener" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp; <!-- name 속성 : 한 개만 선택되도록-->
+                <input id="check2" type="radio" name="gener" value="soso" class="box5"> <br>
+                
+                <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
+                <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
+                <input id="check3" type="radio" name="gener"value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp;
+                <input id="check4" type="radio" name="gener" value="angry" class="box5">
+          
+              </fieldset>
+              
+          </div>
+      
+          <div id = "container3" style='width:150px;float:right;'>   <!-- 버튼 오른쪽 정렬 -->
+              <input type="submit" id="submit" class = "box4" value="저장">
+          </div> 
+        </form>
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,167 @@
+/*map_search페이지에서 구현하기 위해 post_create.css코드 약간씩 수정*/
+* {
+    font-family: "Do Hyeon", sans-serif;
+}
+
+.post_modal {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050; /*모달창이 앞으로 올 수 있도록*/
+}
+
+.post_modal.show-modal {
+    display: block;
+}
+
+.container1 {
+    /* 전체 화면 테두리 */
+
+    display: block;
+
+    border: 0.2px solid rgb(143, 140, 140);
+    border-radius: 25px 25px 105px 25px;
+    border-style: none; /*map_search post를 위해 새로 추가*/
+
+    padding: 105px; /* 칸 높이*/
+    width: 730px; /* 칸 길이 */
+    margin-left: auto;
+    margin-right: auto; /* 박스 좌우 정렬 */
+    margin-top: 65px;
+    margin-bottom: 5px;
+
+    border-color: rgb(236, 231, 231);
+    /* 뒷배경에 지도 사진 넣고 테두리 선 없애주는 border: none; 적어주기 */
+}
+
+.container2 {
+    /* 로그 테두리 */
+
+    display: block;
+
+    border: 0.2px solid rgb(143, 140, 140);
+    border-radius: 35px; /* 모서리 둥글게 */
+
+    box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
+    /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
+    /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+    height: 700px; /* 칸 높이*/
+
+    width: 600px;
+    margin-left: -50px;
+    margin-top: -10px;
+    margin-bottom: -35px;
+    border-color: rgb(236, 231, 231);
+
+    background-color: rgb(248, 248, 248); /*map_search post를 위해 새로 추가*/
+
+    top: 50%;
+    left: 50%;
+    transform: translate(20%, -20%);
+}
+
+#container3 {
+    /* 저장 버튼 박스 관련 */
+    display: flex;
+    align-items: center; /* 내용물 (저장 글씨) 중앙 정렬 */
+    justify-content: center; /*  박스 중앙 정렬 */
+    height: 5px;
+    color: rgb(171, 66, 66);
+
+    /* border: 2px solid rgb(187, 180, 180); */
+}
+
+.container4 {
+    /* 이모티콘 박스 관련 */
+    display: flex;
+
+    margin-top: -75%;
+    margin-right: 1%;
+
+    border: 0.2px solid rgb(143, 140, 140);
+    border-radius: 15px; /* 모서리 둥글게 */
+
+    box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
+    /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
+    /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+    height: 166px; /* 칸 높이*/
+    width: 220px; /* 칸 너비 */
+
+    border-color: rgb(236, 231, 231);
+}
+
+.box1 {
+    /* 제목/날짜/음악 박스 관련 */
+    display: inline-block;
+    border: 2px solid rgb(233, 226, 226);
+    border-radius: 18px;
+
+    box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+        rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+    padding: 7px; /* 칸 높이*/
+    width: 240px; /* 칸 길이 */
+    margin-top: 3px;
+
+    border-color: rgb(186, 177, 177);
+}
+
+.box2 {
+    /* 로그 작성 박스 관련 */
+    display: inline-block;
+    border: 2px solid rgb(186, 177, 177);
+    border-radius: 10px;
+
+    box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+        rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+    padding: 5px; /* 칸 높이*/
+    width: 440px; /* 칸 길이 */
+}
+
+.box3 {
+    /* 사진 등록 박스 관련 */
+    display: inline-block;
+    border: 2px solid rgb(255, 255, 255);
+
+    padding: 55px; /* 칸 높이*/
+    width: 440px; /* 칸 길이 */
+    margin-top: 3px;
+    text-align: initial;
+}
+
+.box4 {
+    /* 저장 버튼 박스 관련 */
+
+    text-align: center;
+
+    color: rgb(159, 121, 121);
+    width: 90px; /* 버튼 길이 */
+    padding: 6px; /* 버튼 높이 */
+    font-size: 20px;
+    color: white;
+    background-color: #f7a195;
+
+    margin-top: 70px;
+    border-radius: 23px;
+    border: none;
+}
+
+h6 {
+    display: flex;
+    padding-left: 1.8em; /* 들여쓰기 */
+    align-items: center;
+    justify-content: center;
+
+    color: #b02c28;
+    letter-spacing: 0.2em; /* 글자 사이 간격 */
+    line-height: 50px; /* 행 간격 */
+    font-size: 23px;
+    font-weight: bold;
+}

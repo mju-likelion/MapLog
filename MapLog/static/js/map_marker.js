@@ -117,5 +117,5 @@ kakao.maps.event.addListener(marker, 'click', function(){
 //닫기(X)버튼을 눌렀을 때 오버레이 사라지도록
 function closeOverlay() {
     test_overlay.setMap(null);     
-}
+} 
 

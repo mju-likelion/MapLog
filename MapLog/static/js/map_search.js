@@ -107,6 +107,12 @@ function displayPlaces(places) {
             kakao.maps.event.addListener(marker, 'mouseout', function() {
                 infowindow.close();
             });
+            
+            //추가 : 마커 클릭 > 포스팅 페이지 모달로 발생시키기
+            kakao.maps.event.addListener(marker, 'click', function(){
+                alert("로그를 작성해주세요!"),
+                modal.classList.add('show-modal')
+            });
 
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
@@ -254,3 +260,14 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
+
+
+//모달 값 추가
+const modal = document.getElementById('modal')
+
+//로그 밖 누르면 모달 꺼지도록 추가
+window.addEventListener('click', (e) => {
+    e.target === modal ? modal.classList.remove('show-modal') : false
+})
+
+

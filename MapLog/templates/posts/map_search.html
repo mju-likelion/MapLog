@@ -39,9 +39,11 @@
           &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
           {% csrf_token %}
           <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
-          <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class="box1" name="title"><br>
-          <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->
 
+          <h6 style="display:inline">위도 : </h6> <input type="text" class="box1" name="lat"><br>
+          <h6 style="display:inline">경도 : </h6> <input type="text" class="box1" name="lng"><br><br>
+
+          <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class="box1" name="title"><br>
           <h6 style="display: inline">날짜 : </h6> <input type="date" class="box1" name="pick_date"><br>
           <h6 style="display:inline">음악 : </h6> <input type="text" class="box1" name="music"><br><br>
           <h6 style="display:inline">로그 : </h6> <textarea id="log" class="box2" name="description" rows=5></textarea><br>

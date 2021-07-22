@@ -1,4 +1,3 @@
-
 from django.urls import path
 from . import views as post_views
 
@@ -10,4 +9,6 @@ urlpatterns = [
     path("<int:post_id>", post_views.post_detail, name="post_detail"),
     path("map/search", post_views.map_search, name="map_search"),
     path("map/marker", post_views.map_marker, name="map_marker"),
+    path("getApi/", post_views.getApi, name="getApi"),
+    path("apiTest/", post_views.apiTest, name="apiTest"),
 ]

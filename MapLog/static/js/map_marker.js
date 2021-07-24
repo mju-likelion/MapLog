@@ -14,10 +14,30 @@ var content = '<div class="overlaybox">' +
 
 // 커스텀 오버레이가 표시될 위치입니다
 // 아이디어톤 - 임시 마커
-var position = [
-    new kakao.maps.LatLng(37.51332036170739, 127.10014089376925),
+// var position = [
+//     new kakao.maps.LatLng(37.51332036170739, 127.10014089376925),
 
-]
+// ]
+
+var position = [];
+
+$.ajax({
+    url: "{% url 'posts:getApi' %}",
+    dataType: "json",
+    success: function (data) {
+        console.log(data);
+        var apiTest = "";
+        for (var i = 0; i < data.length; i++) {
+            position.push({
+                latlng: new kakao.maps.LatLng(data[i].fields.lat, data[i].fields.lat)
+            });
+        }
+    },
+    error: function (request, status, error) {
+        console.log('실패');
+    },
+    async: false
+});
 
 for(var i = 0; i < position.length; i++) {
     // 커스텀 오버레이를 생성합니다
@@ -29,10 +49,6 @@ for(var i = 0; i < position.length; i++) {
     // 커스텀 오버레이를 지도에 표시합니다
     customOverlay.setMap(map);
 }
-
-let posts = JSON.parse("{{ posts_js | escapejs }}")
-console.log("{posts_js}")
-
 
 //마커포스팅이미지 테스트 코드
 

@@ -19,6 +19,9 @@ def post_detail(request, post_id):
 def post_create(request):
     post = Posts()
 
+    post.lat = request.POST.get("lat")
+    post.lng = request.POST.get("lng")
+
     post.title = request.POST.get("title")
     post.pick_date = request.POST.get("pick_date")
     post.create_date = timezone.datetime.now()
@@ -26,9 +29,6 @@ def post_create(request):
     post.mood = request.POST.get("mood")
     post.description = request.POST.get("description")
     post.image = request.FILES["image"]  # views.py 업로드오류 해결
-
-    post.lat = request.POST.get("lat")
-    post.lng = request.POST.get("lng")
 
     post.save()
     return redirect("/posts/" + str(post.id))  # config URL오류나서 맞춰서 수정

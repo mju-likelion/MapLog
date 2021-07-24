@@ -19,8 +19,8 @@ def post_detail(request, post_id):
 def post_create(request):
     post = Posts()
 
-    post.lat = request.POST.get("lat")
-    post.lng = request.POST.get("lng")
+    post.lat = request.POST.get("lat_form")
+    post.lng = request.POST.get("lng_form")
 
     post.title = request.POST.get("title")
     post.pick_date = request.POST.get("pick_date")

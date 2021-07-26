@@ -39,10 +39,10 @@
           &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
           {% csrf_token %}
           <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
-
-          <h6 style="display:inline">위도 : </h6> <input type="text" class="box1 lat_form" name="lat_form" value="lat_form"><br>
-          <h6 style="display:inline">경도 : </h6> <input type="text" class="box1 lng_form" name="lng_form" value="lng_form"><br><br>
-
+          <div class="none" style="display:none;">
+            <h6 style="display:inline;">위도 : </h6> <input type="text" class="box1 lat_form" name="lat_form" value="lat_form"><br>
+            <h6 style="display:inline;">경도 : </h6> <input type="text" class="box1 lng_form" name="lng_form" value="lng_form"><br><br>
+          </div>  
           <h6 style="display:inline">제목 : </h6> <input type="text" id="title" class="box1" name="title"><br>
           <h6 style="display: inline">날짜 : </h6> <input type="date" class="box1" name="pick_date"><br>
           <h6 style="display:inline">음악 : </h6> <input type="text" class="box1" name="music"><br><br>
@@ -53,15 +53,15 @@
 
           <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
             &emsp; &nbsp;
-              <fieldset>
+              <fieldset style="border:none;">
                 <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
                 <span style='font-size:35px;'>&#128528;</span><br> &nbsp; &nbsp;
-                <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp;
+                <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
                 <input id="check2" type="radio" name="mood" value="soso" class="box5"><br>
 
                 <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
                 <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
-                <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp; &nbsp;
+                <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
                 <input id="check4" type="radio" name="mood" value="angry" class="box5">
               </fieldset>
           </div>

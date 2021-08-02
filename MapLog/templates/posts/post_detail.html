@@ -197,7 +197,7 @@
       </div>
       <div class="update_delete_Btn">
         <span><button class="button" onclick="location.href='{% url 'posts:post_update' details.id %}'">로그 수정하기</button></span>
-        <span><button class="button">로그 삭제하기</button></span>
+        <span><button class="button" onclick="location.href='{% url 'posts:post_delete' details.id %}'">로그 삭제하기</button></span>
       </div>
     </div>
   </div>

@@ -67,8 +67,10 @@ def post_update(request, post_id):
         return render(request, "posts/post_update.html", {'form':form})
 
 #로그 삭제함수
-#def post_delete(request, post_id):
-# return render(request, "posts/map_search.html")
+def post_delete(request, post_id):
+    post = Posts.objects.get(id=post_id)
+    post.delete()
+    return render(request, "posts/map_search.html")
 
 
 def getApi(request):

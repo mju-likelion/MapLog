@@ -35,7 +35,7 @@
   <div class="post_modal" id="modal">
     <div class = container1>
       <div class = container2><br>
-        <form action="{% url 'posts:post_create' %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'posts:post_create' %}" method="POST" enctype="multipart/form-data" onsubmit="submit_alert();">
           &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
           {% csrf_token %}
           <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
@@ -361,6 +361,11 @@
     window.addEventListener('click', (e) => {
         e.target === modal ? modal.classList.remove('show-modal') : false
     })
+
+    //추가: 로그모달창 저장 시 나오는 알림
+    function submit_alert(){
+        alert("로그가 작성되었습니다!");
+    }
   </script>
 </body>
 

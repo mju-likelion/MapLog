@@ -27,43 +27,106 @@
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
     var imageSrc = '../../static/images/test_marker.png', // 마커이미지의 주소입니다    
         imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
-        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        imageOption = {offset: new kakao.maps.Point(12, 34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
     
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
     // 커스텀 오버레이가 표시될 위치입니다
-    var position = [];
-    
-    //마커 위에 보여줄 커스텀오버레이(대표사진)
+    var newData, imageArray = [];
+    var imageInfo = {};
 
-
-    
-    //커스텀오버레이 > 누를 수 있는 마커로 변경해보기
     $.ajax({
         url: "{% url 'posts:getApi' %}",
         dataType: "json",
         success: function (data) {
-            console.log(data);
-            var apiTest = "";
-            for (var i = 0; i < data.length; i++) {
-                var position = new kakao.maps.LatLng(data[i].fields.lat, data[i].fields.lng);
-                var marker = new kakao.maps.Marker({
-                  position: position,
-                  image: markerImage
-                });
-                marker.setMap(map);
-            }
-            console.log(position);
-          },
+            // ajax 로 받아온 data 를 newData 변수에 저장 (스코프밖에서도 쓰기 위해)
+            newData = data;
+        },
+
         error: function (request, status, error) {
             console.log('실패');
         },
         async: false
     });
+
+    for (var i = 0; i < newData.length; i++) {
+        // 데이터 끌어와 마커 찍기
+        var position = new kakao.maps.LatLng(newData[i].fields.lat, newData[i].fields.lng);
+        var marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
+        marker.setMap(map);
+
+        // 이미지 경로 이름 수정 + 이미지 자체에 위치 정보 저장
+        directionEdit = "../../media/images/" + newData[i].fields.image.slice(7);
+        imageInfo = {
+            position: position,
+            fileDir: directionEdit
+        }
+        imageArray.push(imageInfo);
+
+        //커스텀 오버레이로 포스팅이미지 나열해보기
+        //마커용 오버레이에 들어갈 내용
+        var test_content = '<div class="test_overlaybox">' +
+            '   <div class="box_header">' + //오버레이 윗부분
+            '        <div class="title">' +
+            '           <span class="marker">' +
+            '               <img src="../../static/images/logpage_marker.png" >' +
+            '           </span>'+
+            '           <span>' +
+            '               <div class="close" onclick="closeOverlay()" title="닫기">'+
+            '                   <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png"'+
+            '               </div>' + 
+            '           </span>' +
+            '        </div>' + 
+            '   </div>' +   
+            '   <div class="imageBox">' + //오버레이 본문부분
+            '       <div class = "imageBox_Title">' + //사진 윗부분
+            '           PHOTO' +
+            '       </div>' +
+            '       <div class = "Images">' + //갤러리가 될 부분
+            '           <ul class="image__list">'+
+            `               <a href="/posts/${i}"><li>` + `<img src=${imageArray[i].fileDir}>` + '</li>' +
+            '           </ul>' +
+            '       </div>' +
+            '   </div>' +
+            '   <div class = "buttons">' + //스크롤 버튼이 될 부분
+            '           <span>' + //아래 스크롤 버튼
+            '               <div class="btn" onclick="" title="아래스크롤">' +
+            '                   <img src="../../static/images/scroll_btn1.png"' +
+            '               </div>' + 
+            '           </span>' +
+            '           <span>' + //위 스크롤 버튼
+            '               <div class="btn" onclick="" title="위스크롤">' +
+            '                   <img src="../../static/images/scroll_btn2.png"' +
+            '               </div>' + 
+            '           </span>' +
+            '   </div>' +
+            '</div>';
+            
+
+        //마커용 오버레이 나타내기
+        var test_overlay = new kakao.maps.CustomOverlay({
+            content: test_content,
+            position: marker.getPosition()
+        });
+
+        //마커 클릭 시 오버레이 나타나도록하기
+        kakao.maps.event.addListener(marker, 'click', function(){
+            test_overlay.setMap(map);
+        });
+
+        //닫기(X)버튼을 눌렀을 때 오버레이 사라지도록
+        function closeOverlay() {
+            test_overlay.setMap(null);     
+        }
+    }
+
+    console.log(imageArray);
 
   </script>
 </body>

@@ -35,7 +35,7 @@
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
     // 커스텀 오버레이가 표시될 위치입니다
-    var newData, imageArray = [];
+    var newData = [];
     var imageInfo = {};
 
     $.ajax({
@@ -52,81 +52,81 @@
         async: false
     });
 
-    for (var i = 0; i < newData.length; i++) {
-        // 데이터 끌어와 마커 찍기
-        var position = new kakao.maps.LatLng(newData[i].fields.lat, newData[i].fields.lng);
+    // console.log(newData);
+
+
+    function addMarker(position) {
         var marker = new kakao.maps.Marker({
+            map: map,
             position: position,
             image: markerImage
         });
         marker.setMap(map);
 
-        // 이미지 경로 이름 수정 + 이미지 자체에 위치 정보 저장
-        directionEdit = "../../media/images/" + newData[i].fields.image.slice(7);
-        imageInfo = {
-            position: position,
-            fileDir: directionEdit
-        }
-        imageArray.push(imageInfo);
-
-        //커스텀 오버레이로 포스팅이미지 나열해보기
-        //마커용 오버레이에 들어갈 내용
-        var test_content = '<div class="test_overlaybox">' +
-            '   <div class="box_header">' + //오버레이 윗부분
-            '        <div class="title">' +
-            '           <span class="marker">' +
-            '               <img src="../../static/images/logpage_marker.png" >' +
-            '           </span>'+
-            '           <span>' +
-            '               <div class="close" onclick="closeOverlay()" title="닫기">'+
-            '                   <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png"'+
-            '               </div>' + 
-            '           </span>' +
-            '        </div>' + 
-            '   </div>' +   
-            '   <div class="imageBox">' + //오버레이 본문부분
-            '       <div class = "imageBox_Title">' + //사진 윗부분
-            '           PHOTO' +
-            '       </div>' +
-            '       <div class = "Images">' + //갤러리가 될 부분
-            '           <ul class="image__list">'+
-            `               <a href="/posts/${i}"><li>` + `<img src=${imageArray[i].fileDir}>` + '</li>' +
-            '           </ul>' +
-            '       </div>' +
-            '   </div>' +
-            '   <div class = "buttons">' + //스크롤 버튼이 될 부분
-            '           <span>' + //아래 스크롤 버튼
-            '               <div class="btn" onclick="" title="아래스크롤">' +
-            '                   <img src="../../static/images/scroll_btn1.png"' +
-            '               </div>' + 
-            '           </span>' +
-            '           <span>' + //위 스크롤 버튼
-            '               <div class="btn" onclick="" title="위스크롤">' +
-            '                   <img src="../../static/images/scroll_btn2.png"' +
-            '               </div>' + 
-            '           </span>' +
-            '   </div>' +
-            '</div>';
-            
-
-        //마커용 오버레이 나타내기
-        var test_overlay = new kakao.maps.CustomOverlay({
-            content: test_content,
-            position: marker.getPosition()
-        });
-
         //마커 클릭 시 오버레이 나타나도록하기
         kakao.maps.event.addListener(marker, 'click', function(){
-            test_overlay.setMap(map);
+            // index
+            var imageList = [];
+            for(var i = 0; i < newData.length; i++) {
+                if(position.La == newData[i].fields.lng && position.Ma == newData[i].fields.lat) {
+                    imageList.push("../../media/images/" + newData[i].fields.image.slice(7));
+                }
+            }
+            console.log(imageList);
+
+            var content = document.createElement("div");
+            for(var i = 0; i < imageList.length; i++) {
+                var img = document.createElement("img");
+                img.src = imageList[i];
+                content.appendChild(img);
+            }
+            console.log(imageList);
+
+            //마커용 오버레이 나타내기
+            var testOverlay = new kakao.maps.CustomOverlay({
+                content: content,
+                position: position
+            });
+
+            testOverlay.setMap(map);
+
+            //닫기(X)버튼을 눌렀을 때 오버레이 사라지도록
+            function closeOverlay() {
+                testOverlay.setMap(null);     
+            }
         });
 
-        //닫기(X)버튼을 눌렀을 때 오버레이 사라지도록
-        function closeOverlay() {
-            test_overlay.setMap(null);     
+        
+        
+
+        
+    }
+
+    // 이미지 경로 이름 수정 + 이미지 자체에 위치 정보 저장
+    // directionEdit = "../../media/images/" + newData[i].fields.image.slice(7);
+    // imageInfo = {
+    //     position: position,
+    //     fileDir: directionEdit
+    // }
+    // imageArray.push(imageInfo);
+
+    // positions 배열 생성
+    var positions = [];
+    for (var i = 0; i < newData.length; i++) {
+        positions.push(new kakao.maps.LatLng(newData[i].fields.lat, newData[i].fields.lng));
+    }
+    // console.log(positions);
+    
+    
+
+    // 마커 보여주는 함수 show 생성
+    function show() {
+        for(var i = 0; i < positions.length; i++) {
+            addMarker(positions[i]);
         }
     }
 
-    console.log(imageArray);
+    show();
 
   </script>
 </body>

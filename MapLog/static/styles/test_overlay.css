@@ -1,3 +1,8 @@
+img {
+  width: 50px;
+  height: 50px;
+}
+
 .test_overlaybox {
   /*전체적인 틀*/
   position: relative;

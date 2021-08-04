@@ -1,4 +1,5 @@
-import requests, json
+import requests
+import json
 from django.http import HttpResponse
 from django.core import serializers
 from django.shortcuts import render, redirect, get_object_or_404
@@ -34,12 +35,14 @@ def post_create(request):
     post.save()
     return redirect("/posts/" + str(post.id))  # config URL오류나서 맞춰서 수정
 
-#로그 수정하기 함수
+# 로그 수정하기 함수
+
+
 def post_update(request, post_id):
     post = get_object_or_404(Posts, pk=post_id)
     #post = Posts.objects.get(id=post_id)
 
-    #수정사항 입력 후 제출
+    # 수정사항 입력 후 제출
     if request.method == "POST":
         form = DetailForm(request.POST, request.FILES)
         if form.is_valid():
@@ -59,14 +62,16 @@ def post_update(request, post_id):
         #post.mood = request.POST.get("mood")
         #post.description = request.POST.get("description")
         #post.image = request.FILES["image"]
-    
-    #수정사항을 입력하기 위한 페이지 렌더링
-    else:
-        #기존 글 불러오기
-        form = DetailForm(instance=post)
-        return render(request, "posts/post_update.html", {'form':form})
 
-#로그 삭제함수
+    # 수정사항을 입력하기 위한 페이지 렌더링
+    else:
+        # 기존 글 불러오기
+        form = DetailForm(instance=post)
+        return render(request, "posts/post_update.html", {'form': form})
+
+# 로그 삭제함수
+
+
 def post_delete(request, post_id):
     post = Posts.objects.get(id=post_id)
     post.delete()
@@ -97,4 +102,5 @@ def map_search(request):
 
 
 def map_marker(request):
-    return render(request, "posts/map_marker.html")
+    posts = Posts.objects.all()
+    return render(request, "posts/map_marker.html", {"posts": posts})

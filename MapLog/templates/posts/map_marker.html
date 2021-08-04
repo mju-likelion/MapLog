@@ -69,18 +69,47 @@
             var imageList = [];
             for(var i = 0; i < newData.length; i++) {
                 if(position.La == newData[i].fields.lng && position.Ma == newData[i].fields.lat) {
-                    imageList.push("../../media/images/" + newData[i].fields.image.slice(7));
+                    var tempObj = {
+                        index: newData[i].pk,
+                        imageDir: "../../media/images/" + newData[i].fields.image.slice(7)
+                    };
+                    imageList.push(tempObj);
                 }
             }
             console.log(imageList);
 
+            // 커스텀 오버레이 콘텐츠 Dom 으로 구현
             var content = document.createElement("div");
+            content.className = 'overlay__container';
+
+            var headContainer = document.createElement("div");
+            headContainer.className = "box__header";
+            content.appendChild(headContainer);
+
+            var pin = document.createElement("span");
+            pin.className = 'pin';
+            pin.appendChild(document.createTextNode("📍"));
+            headContainer.appendChild(pin);
+
+            var close = document.createElement("span");
+            close.className = 'close';
+            close.appendChild(document.createTextNode("✖️"));
+            close.onclick = function() { testOverlay.setMap(null); };
+            headContainer.appendChild(close);
+
+            var imageContainer = document.createElement("div");
+            imageContainer.className = 'image__container';
+            content.appendChild(imageContainer);
+
+
             for(var i = 0; i < imageList.length; i++) {
                 var img = document.createElement("img");
-                img.src = imageList[i];
-                content.appendChild(img);
+                var anchor = document.createElement("a");
+                img.src = imageList[i].imageDir;
+                anchor.setAttribute("href", `../${imageList[i].index}`);
+                anchor.appendChild(img);
+                imageContainer.appendChild(anchor);
             }
-            console.log(imageList);
 
             //마커용 오버레이 나타내기
             var testOverlay = new kakao.maps.CustomOverlay({
@@ -89,26 +118,8 @@
             });
 
             testOverlay.setMap(map);
-
-            //닫기(X)버튼을 눌렀을 때 오버레이 사라지도록
-            function closeOverlay() {
-                testOverlay.setMap(null);     
-            }
         });
-
-        
-        
-
-        
     }
-
-    // 이미지 경로 이름 수정 + 이미지 자체에 위치 정보 저장
-    // directionEdit = "../../media/images/" + newData[i].fields.image.slice(7);
-    // imageInfo = {
-    //     position: position,
-    //     fileDir: directionEdit
-    // }
-    // imageArray.push(imageInfo);
 
     // positions 배열 생성
     var positions = [];
@@ -116,7 +127,6 @@
         positions.push(new kakao.maps.LatLng(newData[i].fields.lat, newData[i].fields.lng));
     }
     // console.log(positions);
-    
     
 
     // 마커 보여주는 함수 show 생성

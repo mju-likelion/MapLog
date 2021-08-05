@@ -2,7 +2,7 @@
 
 {% block css %}
 	<link rel="stylesheet" href="{% static 'styles/map_search.css' %}" />
-  <link rel="stylesheet" href="{% static 'styles/map_posting.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/posting_detail.css' %}" />
   <link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
 	<link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -13,192 +13,95 @@
 	{% include "partials/navbar.html" %}
 {% endblock %} 
 
-<head>
-  <style>
-    /*로그발행창 상세부분 css*/
-      * {
-            font-family: "Do Hyeon", sans-serif;
-        }
-
-      .box1 {
-            /* 제목/날짜/음악 박스 관련 */
-            display: inline-block;
-            border: 2px solid rgb(233, 226, 226);
-            border-radius: 18px;
-
-            box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
-                rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
-
-            padding: 7px; /* 칸 높이*/
-            width: 240px; /* 칸 길이 */
-            margin-top: 3px;
-
-            border-color: rgb(186, 177, 177);
-        }
-
-        .box2 {
-            /* 로그 작성 박스 관련 */
-            display: inline-block;
-            border: 2px solid rgb(186, 177, 177);
-            border-radius: 10px;
-
-            box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
-                rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
-
-            padding: 10px; /* 칸 높이*/
-            width: 440px; /* 칸 길이 */
-        }
-
-        .post_detail_modal {
-            /* 전체 화면 테두리 */
-
-            display: block;
-
-            border: 0.2px solid rgb(143, 140, 140);
-            border-radius: 25px 25px 105px 25px;
-
-            padding: 100px; /* 칸 높이*/
-            width: 700px; /* 칸 길이 */
-            margin-left: auto;
-            margin-right: auto; /* 박스 좌우 정렬 */
-            margin-top: 65px;
-            margin-bottom: 5px;
-
-            border-color: rgb(236, 231, 231);
-            /* 뒷배경에 지도 사진 넣고 테두리 선 없애주는 border: none; 적어주기 */
-        }
-
-        .container {
-            /* 로그 테두리 */
-
-            display: block;
-
-            border: 0.2px solid rgb(143, 140, 140);
-            border-radius: 35px; /* 모서리 둥글게 */
-
-            box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
-            /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
-            /* 박스 그림자 색깔 (마지막 인자는 선명도) */
-
-            height: 700px; /* 칸 높이*/
-
-            width: 600px;
-            margin-left: -50px;
-            margin-top: -10px;
-            margin-bottom: -35px;
-
-            top: 50%;
-            left: 50%;
-            transform: translate(20%, -20%);
-        }
-
-        .container4 {
-            /* 이모티콘 박스 관련 */
-            display: flex;
-
-            margin-top: -70%;
-            margin-right: 10%;
-
-            border: 0.2px solid rgb(143, 140, 140);
-            border-radius: 15px; /* 모서리 둥글게 */
-
-            box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
-            /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
-            /* 박스 그림자 색깔 (마지막 인자는 선명도) */
-
-            height: 166px; /* 칸 높이*/
-            width: 220px; /* 칸 너비 */
-
-            border-color: rgb(236, 231, 231);
-        }
-
-        h6 {
-            display: flex;
-            padding-left: 1.8em; /* 들여쓰기 */
-            align-items: center;
-            justify-content: center;
-
-            color: #b02c28;
-            letter-spacing: 0.2em; /* 글자 사이 간격 */
-            line-height: 50px; /* 행 간격 */
-            font-size: 23px;
-            font-weight: bold;
-        }
-
-
-        #closeBtn_img {
-          margin-left: 90%;
-          margin-top: -10%;
-          width: 50px;
-          height: 50px;
-        }
-
-        #detail_img {
-          width: 170px;
-          height: 170px;
-        }
-
-        .update_delete_Btn {
-          text-align: center;
-        }
-
-        .button {
-            /* 저장 버튼 박스 관련 */
-            align-items: center; /* 내용물 (저장 글씨) 중앙 정렬 */
-            text-align: center;
-
-            color: rgb(159, 121, 121);
-            width: 130px; /* 버튼 길이 */
-            padding: 5px; /* 버튼 높이 */
-            font-size: 20px;
-            color: white;
-            background-color: #f7a195;
-
-            margin-top: 30px;
-            border-radius: 23px;
-            border: none;
-        }
-  
-  </style>
-</head>
-
 <body>
-  <!--로그발행 모달창 될 부분-->
-  <div class="post_detail_modal" id="modal">
-    <div clss="container">
-      <div class="post_header">
-        <span style='font-size:55px;'>&#128221;</span>
-        <span>
-          <div class="closeBtn">
-            <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png" id="closeBtn_img">
-          </div>
-        </span>
+  <div class="map_wrap">
+    <div id="map" style="width:100%;height:84%;"></div>
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            장소검색 : <input type="text" value="" id="keyword" size="15"> 
+            <button type="submit">검색</button> 
+          </form>
+        </div>
       </div>
-      <div class="post_container">
-        <h6 style="display:inline">제목 : </h6><textarea class="box1">{{details.title}}</textarea><br>
-        <h6 style="display: inline">날짜 : </h6><textarea class="box1">{{details.pick_date}}</textarea><br>
-        <h6 style="display:inline">음악 : </h6><textarea class="box1">{{details.music}}</textarea><br><br>
-        <h6 style="display:inline">로그 : </h6><textarea class="box2">{{details.description}}</textarea><br>
-        <h6 style="display:inline">사진 : </h6> <img src="{{details.image.url}}" id="detail_img"> <br>
-      </div>
-      <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
-        &emsp; &nbsp;
-          <fieldset style="border:none;">
-            <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
-            <span style='font-size:35px;'>&#128528;</span><br> &nbsp; &nbsp;
-            <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
-            <input id="check2" type="radio" name="mood" value="soso" class="box5"><br>
-
-            <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
-            <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
-            <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
-            <input id="check4" type="radio" name="mood" value="angry" class="box5">
-          </fieldset>
-      </div>
-      <div class="update_delete_Btn">
-        <span><button class="button" onclick="location.href='{% url 'posts:post_update' details.id %}'">로그 수정하기</button></span>
-        <span><button class="button" onclick="location.href='{% url 'posts:post_delete' details.id %}'">로그 삭제하기</button></span>
-      </div>
+      <hr>
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
     </div>
   </div>
+
+    <!--로그발행 모달창 될 부분-->
+    <div class="detail_modal" id="modal_wrap">
+      <div class = container1>
+        <div class = container2><br>
+            &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+            {% csrf_token %}
+            <span style='font-size:55px;'>&#128221;</span>
+            <span>
+              <div class="closeBtn">
+                <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png" id="closeBtn_img" onclick="location.href='{%url 'posts:map_search' %}'">
+              </div>
+            </span>
+            <br><br>  <!-- 이모티콘 붙이기 -->
+            <h6 style="display:inline">제목 : </h6><div class="box1">{{details.title}}</div><br>
+            <h6 style="display:inline">날짜 : </h6><div class="box1">{{details.pick_date}}</div><br>
+            <h6 style="display:inline">음악 : </h6><div class="box1">{{details.music}}</div><br><br>
+            <h6 style="display:inline">로그 : </h6><div class="box2">{{details.description}}</div><br><br>
+            <h6 style="display:inline">사진 : </h6><img src="{{details.image.url}}" id="detail_img"><br><br>
+            
+            <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
+              &emsp; &nbsp;
+                <fieldset style="border:none;">
+                  <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128528;</span><br> &nbsp; &nbsp;
+                  <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check2" type="radio" name="mood" value="soso" class="box5"><br>
+  
+                  <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
+                  <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check4" type="radio" name="mood" value="angry" class="box5">
+                </fieldset>
+            </div>
+        
+            <div id = "container3">   <!-- 수정,삭제 버튼 가운데 정렬 -->
+              <div class="update_delete_Btn">
+                <span><button class="button" onclick="location.href='{% url 'posts:post_update' details.id %}'">로그 수정하기</button></span>
+                <span><button class="button" onclick="delete_btn()">로그 삭제하기</button></span>
+              </div>
+            </div> 
+        </div>
+      </div>
+
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    var markers = [];
+            
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };  
+            
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+    //디테일창 모달 값 추가
+    const modal = document.getElementById('modal_wrap')
+
+    //삭제 버튼 클릭 시 이벤트
+    function delete_btn(){
+      alert("로그가 삭제되었습니다!");
+      location.href="{% url 'posts:map_search' %}";
+    }
+    
+  </script>
 </body>
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 

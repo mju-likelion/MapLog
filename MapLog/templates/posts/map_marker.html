@@ -13,14 +13,133 @@
 	{% include "partials/navbar.html" %}
 {% endblock %} 
 
-{% block content %}
-	<div id="map" style="width:100%;height:84%;"></div>
-{% endblock %} 
+<body>
+  <div id="map" style="width:100%;height:84%;"></div>
 
-{% block javascript %}
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
-	<script src="/static/js/map_marker.js"></script>
-{% endblock javascript %}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+  <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = { 
+          center: new kakao.maps.LatLng(37.502, 127.026581), // 지도의 중심좌표
+          level: 12 // 지도의 확대 레벨
+      };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    var imageSrc = '../../static/images/test_marker.png', // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(12, 34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+    // 커스텀 오버레이가 표시될 위치입니다
+    var newData = [];
+    var imageInfo = {};
+
+    $.ajax({
+        url: "{% url 'posts:getApi' %}",
+        dataType: "json",
+        success: function (data) {
+            // ajax 로 받아온 data 를 newData 변수에 저장 (스코프밖에서도 쓰기 위해)
+            newData = data;
+        },
+
+        error: function (request, status, error) {
+            console.log('실패');
+        },
+        async: false
+    });
+
+    // console.log(newData);
+
+
+    function addMarker(position) {
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: position,
+            image: markerImage
+        });
+        marker.setMap(map);
+
+        //마커 클릭 시 오버레이 나타나도록하기
+        kakao.maps.event.addListener(marker, 'click', function(){
+            // index
+            var imageList = [];
+            for(var i = 0; i < newData.length; i++) {
+                if(position.La == newData[i].fields.lng && position.Ma == newData[i].fields.lat) {
+                    var tempObj = {
+                        index: newData[i].pk,
+                        imageDir: "../../media/images/" + newData[i].fields.image.slice(7)
+                    };
+                    imageList.push(tempObj);
+                }
+            }
+            console.log(imageList);
+
+            // 커스텀 오버레이 콘텐츠 Dom 으로 구현
+            var content = document.createElement("div");
+            content.className = 'overlay__container';
+
+            var headContainer = document.createElement("div");
+            headContainer.className = "box__header";
+            content.appendChild(headContainer);
+
+            var pin = document.createElement("span");
+            pin.className = 'pin';
+            pin.appendChild(document.createTextNode("📍"));
+            headContainer.appendChild(pin);
+
+            var close = document.createElement("span");
+            close.className = 'close';
+            close.appendChild(document.createTextNode("✖️"));
+            close.onclick = function() { testOverlay.setMap(null); };
+            headContainer.appendChild(close);
+
+            var imageContainer = document.createElement("div");
+            imageContainer.className = 'image__container';
+            content.appendChild(imageContainer);
+
+
+            for(var i = 0; i < imageList.length; i++) {
+                var img = document.createElement("img");
+                var anchor = document.createElement("a");
+                img.src = imageList[i].imageDir;
+                anchor.setAttribute("href", `../${imageList[i].index}`);
+                anchor.appendChild(img);
+                imageContainer.appendChild(anchor);
+            }
+
+            //마커용 오버레이 나타내기
+            var testOverlay = new kakao.maps.CustomOverlay({
+                content: content,
+                position: position
+            });
+
+            testOverlay.setMap(map);
+        });
+    }
+
+    // positions 배열 생성
+    var positions = [];
+    for (var i = 0; i < newData.length; i++) {
+        positions.push(new kakao.maps.LatLng(newData[i].fields.lat, newData[i].fields.lng));
+    }
+    // console.log(positions);
+    
+
+    // 마커 보여주는 함수 show 생성
+    function show() {
+        for(var i = 0; i < positions.length; i++) {
+            addMarker(positions[i]);
+        }
+    }
+
+    show();
+
+  </script>
+</body>
 
 {% block footer %} 
 	{% include "partials/footer.html" %}

@@ -1,0 +1,339 @@
+{% load static %} 
+<!DOCTYPE html>
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'styles/map_search.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+<head>
+  <style>
+    /*로그 수정창 css 관련*/
+    * {
+        font-family: "Do Hyeon", sans-serif;
+    }
+
+    .detail_modal {
+      background: rgba(0, 0, 0, 0.4);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1050; /*모달창이 앞으로 올 수 있도록*/
+  }
+
+    .detail_modal.show-modal {
+      display: block;
+    }
+
+    input#id_title {
+          /* 제목 박스 관련 */
+      display: inline-block;
+      border: 2px solid rgb(233, 226, 226);
+      border-radius: 18px;
+
+      box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+          rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+      padding: 7px; /* 칸 높이*/
+      width: 220px; /* 칸 길이 */
+      height: 20px;
+      margin-top: 3px;
+
+      border-color: rgb(186, 177, 177);
+    }
+
+    input#id_music {
+      /*음악 박스 관련*/
+      display: inline-block;
+      border: 2px solid rgb(233, 226, 226);
+      border-radius: 18px;
+
+      box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+          rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+      padding: 7px; /* 칸 높이*/
+      width: 220px; /* 칸 길이 */
+      height: 20px;
+      margin-top: 3px;
+
+      border-color: rgb(186, 177, 177);
+    }
+
+    input#id_description {
+      display: inline-block;
+      border: 2px solid rgb(186, 177, 177);
+      border-radius: 10px;
+
+      box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+          rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+      padding: 10px; /* 칸 높이*/
+      width: 440px; /* 칸 길이 */
+    }
+
+    .container1 {
+        /* 전체 화면 테두리 */
+
+        display: block;
+
+        border: 0.2px solid rgb(143, 140, 140);
+        border-radius: 25px 25px 105px 25px;
+        border-style: none; /*map_search post를 위해 새로 추가*/
+
+        padding: 105px; /* 칸 높이*/
+        width: 730px; /* 칸 길이 */
+        margin-left: auto;
+        margin-right: auto; /* 박스 좌우 정렬 */
+        margin-top: 65px;
+        margin-bottom: 5px;
+
+        border-color: rgb(236, 231, 231);
+        /* 뒷배경에 지도 사진 넣고 테두리 선 없애주는 border: none; 적어주기 */
+    }
+
+    .container2 {
+        /* 로그 테두리 */
+
+        display: block;
+
+        border: 0.2px solid rgb(143, 140, 140);
+        border-radius: 35px; /* 모서리 둥글게 */
+
+        box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
+        /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
+        /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+        height: 700px; /* 칸 높이*/
+
+        width: 600px;
+        margin-left: -50px;
+        margin-top: -10px;
+        margin-bottom: -35px;
+        border-color: rgb(236, 231, 231);
+
+        background-color: rgb(248, 248, 248); /*map_search post를 위해 새로 추가*/
+
+        top: 50%;
+        left: 50%;
+        transform: translate(20%, -20%);
+    }
+
+    .container4 {
+        /* 이모티콘 박스 관련 */
+        display: flex;
+
+        margin-top: -70%;
+        margin-right: 1%;
+
+        border: 0.2px solid rgb(143, 140, 140);
+        border-radius: 15px; /* 모서리 둥글게 */
+
+        box-shadow: 3px 4px 10px 0.2px rgba(12, 12, 12, 0.4);
+        /* 박스 그림자 복수 지정 -> x축, y축, 테두리 흐린 정도, 그림자 크기, 그림자 색깔 (하단) */
+        /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+        height: 166px; /* 칸 높이*/
+        width: 220px; /* 칸 너비 */
+
+        border-color: rgb(236, 231, 231);
+    }
+
+    .box1 {
+        /*날짜 박스 관련 */
+        display: inline-block;
+        border: 2px solid rgb(233, 226, 226);
+        border-radius: 18px;
+
+        box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+            rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+        padding: 7px; /* 칸 높이*/
+        width: 220px; /* 칸 길이 */
+        height: 20px;
+        margin-top: 3px;
+
+        border-color: rgb(186, 177, 177);
+    }
+
+    .box2 {
+        /* 로그 작성 박스 관련 */
+        display: inline-block;
+        border: 2px solid rgb(186, 177, 177);
+        border-radius: 10px;
+
+        box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
+            rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
+
+        padding: 10px; /* 칸 높이*/
+        width: 440px; /* 칸 길이 */
+    }
+
+    .box3 {
+      /* 사진 등록 박스 관련 */
+      display: inline-block;
+      border: 2px solid rgb(255, 255, 255);
+
+      padding: 55px; /* 칸 높이*/
+      width: 440px; /* 칸 길이 */
+      margin-top: 3px;
+      margin-left: 5%;
+      text-align: initial;
+    }
+
+    .box4 {
+          /* 저장 버튼 박스 관련 */
+
+          text-align: center;
+
+          color: rgb(159, 121, 121);
+          width: 90px; /* 버튼 길이 */
+          padding: 6px; /* 버튼 높이 */
+          font-size: 20px;
+          color: white;
+          background-color: #f7a195;
+
+          margin-top: 70px;
+          border-radius: 23px;
+          border: none;
+      }
+
+    h6 {
+        display: flex;
+        padding-left: 1.8em; /* 들여쓰기 */
+        align-items: center;
+        justify-content: center;
+
+        color: #b02c28;
+        letter-spacing: 0.2em; /* 글자 사이 간격 */
+        line-height: 50px; /* 행 간격 */
+        font-size: 23px;
+        font-weight: bold;
+    }
+
+    #container3 {
+          /* 저장 버튼 박스 관련 */
+          display: flex;
+          align-items: center; /* 내용물 (저장 글씨) 중앙 정렬 */
+          justify-content: center; /*  박스 중앙 정렬 */
+          height: 5px;
+          color: rgb(171, 66, 66);
+
+          /* border: 2px solid rgb(187, 180, 180); */
+      }
+
+    #detail_img {
+        /*업로드 사진관련*/
+        width: 170px;
+        height: 170px;
+    }
+
+    #closeBtn_img {
+      /*X버튼 관련*/
+      margin-left: 85%;
+      margin-top: -10%;
+      width: 50px;
+      height: 50px;
+    }
+
+    .closeBtn {
+      margin-top: -4%;
+    }
+        
+  </style>
+</head>
+
+<body>
+  <div class="map_wrap">
+    <div id="map" style="width:100%;height:84%;"></div>
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            장소검색 : <input type="text" value="" id="keyword" size="15"> 
+            <button type="submit">검색</button> 
+          </form>
+        </div>
+      </div>
+      <hr>
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
+    </div>
+  </div>
+
+  <div class="detail_modal" id="modal_wrap">
+    <div class = container1>
+      <div class = container2><br>
+        <form method="POST" enctype="multipart/form-data" onsubmit="submit_alert();">
+            &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+            {% csrf_token %}
+            <span style='font-size:55px;'>&#128221;</span>
+            <span>
+              <div class="closeBtn">
+                <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png" id="closeBtn_img" onclick="location.href='{%url 'posts:map_marker'%}'">
+              </div>
+            </span>
+              <br><br>  <!-- 이모티콘 붙이기 -->
+              <h6 style="display:inline">제목 : </h6>{{form.title}}<br>
+              <h6 style="display: inline">날짜 : </h6> <input type="date" class="box1" name="pick_date"><br>
+              <h6 style="display:inline">음악 : </h6>{{form.music}}<br><br>
+              <h6 style="display:inline">로그 : </h6>{{form.description}}<br>
+              <h6 style="display:inline">사진 : </h6><input type="file" class="box3" name="image"><br>
+    
+              <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
+              &emsp; &nbsp;
+                <fieldset style="border:none;">
+                  <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128528;</span><br> &nbsp; &nbsp;
+                  <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check2" type="radio" name="mood" value="soso" class="box5"><br>
+            
+                  <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
+                  <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check4" type="radio" name="mood" value="angry" class="box5">
+                </fieldset>
+              </div>
+
+            
+            <div id = "container3" style='width:150px;float:right;'>   <!-- 버튼 오른쪽 정렬 -->
+              <input type="submit" id="submit" class = "box4" value="수정">
+            </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44a3c7ab5eee77b8a7d6cd3fba3daf59&libraries=services"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    var markers = [];
+            
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };  
+            
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    
+  </script>
+</body>
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 
+    
+

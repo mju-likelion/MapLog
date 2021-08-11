@@ -1,79 +1,47 @@
-.test_overlaybox {
-    /*전체적인 틀*/
-    position: relative;
-    border: 1px solid #d3d3d3;
-    border-radius: 20px;
-    width: 550px;
-    height: 550px;
-    background-color: white;
-    box-shadow: 7px 7px 7px #b4b4b4;
+.overlay__container {
+  /*전체적인 틀*/
+  position: relative;
+  border-radius: 20px;
+  width: 550px;
+  height: 550px;
+  background-color: white;
+  box-shadow: 7px 7px 7px #b4b4b4;
 }
 
-.box_header .title {
-    /*핀 이미지와 닫기 버튼 정렬*/
-    display: flex;
-    justify-content: space-around;
+.box__header {
+  padding-top: 5%;
 }
 
-.box_header .close {
-    /*닫기 버튼*/
-    display: flex;
-    width: 40px;
-    height: 40px;
-    margin-top: 100%;
-    margin-left: 30%;
+.box__header .close {
+  /*닫기 이모지*/
+  margin-left: 70%;
+  font-size: 30px;
 }
 
-.box_header .close:hover {
-    cursor: pointer;
+.box__header .close:hover {
+  cursor: pointer;
 }
 
-.box_header .marker {
-    /*마커 모양 */
-    display: flex;
-    width: 70px;
-    height: 70px;
-    margin-top: 5%;
-    margin-right: 40%;
+.box__header .pin {
+  /*마커 모양 */
+  text-align: left;
+  margin-left: 10%;
+  font-size: 30px;
 }
 
-.imageBox .imageBox_Title {
-    display: inline-box;
-    text-align: center;
-    font-size: medium;
+.image__container {
+  /*이미지박스의 큰 틀*/
+  height: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 
-.imageBox {
-    /*이미지박스의 큰 틀*/
-    height: 70%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-}
-
-.imageBox .Image li {
-    /*이미지 상자*/
-    list-style: none;
-    border: 1px solid #d3d3d3;
-    border-radius: 20px;
-    float: left;
-    margin: 10px 5px;
-    width: 150px;
-    height: 150px;
-}
-
-.Image img {
-    /*이미지 속성*/
-    border-radius: 20px;
-    width: 150px;
-    height: 150px;
-}
-
-.buttons .btn {
-    /*스크롤 버튼*/
-    display: flex;
-    width: 25px;
-    height: 25px;
-    margin-left: 42%;
+.image__container img {
+  border-radius: 20px;
+  width: 150px;
+  height: 150px;
+  margin: 0 1%;
+  box-shadow: 2px 2px 2px #b4b4b4;
 }

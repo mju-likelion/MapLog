@@ -1,40 +1,107 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang = "ko">
-  <head> 
-    <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="{% static 'styles/post_create.css' %}"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <script     
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
+{% load static %} 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/map_search.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/posting_detail.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
 
-    <title>로그 디테일</title>
-  </head>
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
 
-  <body>  
-    <div class = container1>
-      <div class = container2><br>
-        &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
-    
-        <span style='font-size:55px;'>&#128221;</span> <br><br>  <!-- 이모티콘 붙이기 -->
-        <h6 style="display:inline">제목 : </h6> <p>{{details.title}}</p><br>
-        <!-- style="display:inline" : head 태그에서 줄바꿈 없애기-->
-
-        <h6 style="display:inline">날짜 : </h6> <p>{{details.pick_date}}</p>
-        <h6 style="display:inline">기분 : </h6> <p>{{details.mood}}</p>
-        <h6 style="display:inline">음악 : </h6> <p>{{details.music}}</p><br>
-        <h6 style="display:inline">로그 : </h6> <p>{{details.description}}</p><br>
-        <h6 style="display:inline">사진 : </h6> <img src="{{details.image.url}}" height=300><br>
+<body>
+  <div class="map_wrap">
+    <div id="map" style="width:100%;height:84%;"></div>
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            장소검색 : <input type="text" value="" id="keyword" size="15"> 
+            <button type="submit">검색</button> 
+          </form>
+        </div>
       </div>
+      <hr>
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
     </div>
-  </body>
-</html>
+  </div>
+
+    <!--로그발행 모달창 될 부분-->
+    <div class="detail_modal" id="modal_wrap">
+      <div class = container1>
+        <div class = container2><br>
+            &emsp;&ensp; <!-- &nbsp : 1칸 띄어쓰기, &ensp; 2칸 띄어쓰기, &emsp; 3칸 띄어쓰기 -->
+            {% csrf_token %}
+            <span style='font-size:55px;'>&#128221;</span>
+            <span>
+              <div class="closeBtn">
+                <img src="https://cdn.pixabay.com/photo/2016/10/10/01/49/x-1727490_960_720.png" id="closeBtn_img" onclick="location.href='{%url 'posts:map_search' %}'">
+              </div>
+            </span>
+            <br><br>  <!-- 이모티콘 붙이기 -->
+            <h6 style="display:inline">제목 : </h6><div class="box1">{{details.title}}</div><br>
+            <h6 style="display:inline">날짜 : </h6><div class="box1">{{details.pick_date}}</div><br>
+            <h6 style="display:inline">음악 : </h6><div class="box1">{{details.music}}</div><br><br>
+            <h6 style="display:inline">로그 : </h6><div class="box2">{{details.description}}</div><br><br>
+            <h6 style="display:inline">사진 : </h6><img src="{{details.image.url}}" id="detail_img"><br><br>
+            
+            <div class = "container4" style="float:right;">    <!-- 이모티콘 박스 -->
+              &emsp; &nbsp;
+                <fieldset style="border:none;">
+                  <span style='font-size:35px;'>&#128522;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128528;</span><br> &nbsp; &nbsp;
+                  <input id="check1" type="radio" name="mood" value="happy" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check2" type="radio" name="mood" value="soso" class="box5"><br>
+  
+                  <span style='font-size:35px;'>&#128557;</span> &emsp; &emsp;
+                  <span style='font-size:35px;'>&#128545;</span> <br> &nbsp; &nbsp;
+                  <input id="check3" type="radio" name="mood" value="sad" class="box5"> &nbsp; &emsp; &nbsp; &emsp; &nbsp;
+                  <input id="check4" type="radio" name="mood" value="angry" class="box5">
+                </fieldset>
+            </div>
+        
+            <div id = "container3">   <!-- 수정,삭제 버튼 가운데 정렬 -->
+              <div class="update_delete_Btn">
+                <span><button class="button" onclick="location.href='{% url 'posts:post_update' details.id %}'">로그 수정하기</button></span>
+                <span><button class="button" onclick="delete_btn()">로그 삭제하기</button></span>
+              </div>
+            </div> 
+        </div>
+      </div>
+
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8473586f2a4919e8cf90580a8334ebbc&libraries=services"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    var markers = [];
+            
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };  
+            
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+    //디테일창 모달 값 추가
+    const modal = document.getElementById('modal_wrap')
+
+    //삭제 버튼 클릭 시 이벤트
+    function delete_btn(){
+      alert("로그가 삭제되었습니다!");
+      location.href="{% url 'posts:map_search' %}";
+    }
+    
+  </script>
+</body>
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %} 

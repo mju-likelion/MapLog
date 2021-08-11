@@ -1,0 +1,79 @@
+{% load static %} 
+{{ data|json_script:"page_data" }}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'styles/by_date.css' %}" />
+	<link rel="stylesheet" href="{% static 'styles/partials/navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/partials/footer.css' %}" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet"/>
+{% endblock %} 
+
+{% block navbar %} 
+	{% include "partials/navbar.html" %}
+{% endblock %} 
+
+<body>
+  <div class="menubar">
+    <img src="../../static/images/profile_pic.png">
+    <div class="menu">
+      <a href="{% url 'mypage:acc_info' %}">회원 정보</a>
+      <a class="selected" href="{% url 'mypage:by_date' %}">날짜별로 모아보기</a>
+      <a href="{% url 'mypage:by_mood' %}">기분별로 모아보기</a>
+    </div> 
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+      
+    {% comment %} function search(start_date, end_date) { // 시작/끝 날짜 입력받고 db에 저장하는 함수
+      var searchForm = document.searchForm;
+      var start_date = searchForm.start_date.value;
+      var end_date = searchForm.end_date.value;
+
+    } {% endcomment %}
+
+
+    function image_show() { // 조건에 맞는 로그 사진 띄우는 함수
+      var start_date = searchForm.start_date.value;
+      var end_date = searchForm.end_date.value;
+
+      var start_arr = start_date.substr(0, 10);
+      var end_arr = end_date.substr(0, 10);
+      const data = JSON.parse(document.getElementById('page_data').textContent);
+      data.forEach(photo => {
+        console.log(photo.pick_date);
+        if (photo.pick_date >= start_arr && photo.pick_date <= end_arr) {
+        // pick_date가 start_date보다 크고 end_date보다 작으면 밑에를 실행해라
+          document.getElementById("myDiv").innerHTML
+            = document.getElementById("myDiv").innerHTML + `<img src="${photo.image}"/> <p>${photo.pick_date}</p>`;
+        }
+        })
+    } 
+
+  </script>
+
+  <div class="info__container">
+    <div class="title">날짜별로 모아보기</div>
+    <div class="content">
+      <form name = "searchForm" action = "{% url 'mypage:by_date' %}" method="POST">
+        {% csrf_token %}
+        <label><input type="date" id="start_date" name="start_date" value="from">부터</label>    
+        <label><input type="date" id="end_date" name="end_date" value="to">까지</label>
+        <input type = "hidden" name="searchType" value="admin">
+        <input type = "button" name = "showImage" onclick = "image_show();" value = "검색">
+      </form>
+
+      <div class="gallery">
+        <div class="row" id = "myDiv">
+    
+
+       </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+{% block footer %} 
+	{% include "partials/footer.html" %}
+{% endblock %}  

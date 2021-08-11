@@ -1,8 +1,21 @@
-/*  해나님 작성 코드 */
-
-/* font-family : 페이지 전체에 적용 */
+/*map_search페이지에서 구현하기 위해 post_create.css코드 약간씩 수정*/
 * {
     font-family: "Do Hyeon", sans-serif;
+}
+
+.post_modal {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050; /*모달창이 앞으로 올 수 있도록*/
+}
+
+.post_modal.show-modal {
+    display: block;
 }
 
 .container1 {
@@ -12,6 +25,7 @@
 
     border: 0.2px solid rgb(143, 140, 140);
     border-radius: 25px 25px 105px 25px;
+    border-style: none; /*map_search post를 위해 새로 추가*/
 
     padding: 105px; /* 칸 높이*/
     width: 730px; /* 칸 길이 */
@@ -43,7 +57,14 @@
     margin-top: -10px;
     margin-bottom: -35px;
     border-color: rgb(236, 231, 231);
+
+    background-color: rgb(248, 248, 248); /*map_search post를 위해 새로 추가*/
+
+    top: 50%;
+    left: 50%;
+    transform: translate(20%, -20%);
 }
+
 #container3 {
     /* 저장 버튼 박스 관련 */
     display: flex;
@@ -59,8 +80,8 @@
     /* 이모티콘 박스 관련 */
     display: flex;
 
-    margin-top: -79%;
-    margin-right: 3.5%;
+    margin-top: -75%;
+    margin-right: 1%;
 
     border: 0.2px solid rgb(143, 140, 140);
     border-radius: 15px; /* 모서리 둥글게 */
@@ -70,7 +91,7 @@
     /* 박스 그림자 색깔 (마지막 인자는 선명도) */
 
     height: 166px; /* 칸 높이*/
-    width: 190px; /* 칸 너비 */
+    width: 220px; /* 칸 너비 */
 
     border-color: rgb(236, 231, 231);
 }
@@ -100,7 +121,7 @@
     box-shadow: 3px 5px 3px /* 박스 그림자 -> x축, y축, 테두리 흐린 정도 */
         rgba(162, 159, 159, 0.4); /* 박스 그림자 색깔 (마지막 인자는 선명도) */
 
-    padding: 5px; /* 칸 높이*/
+    padding: 10px; /* 칸 높이*/
     width: 440px; /* 칸 길이 */
 }
 

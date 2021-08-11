@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from django.core import serializers
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from .models import Posts
 from .form import DetailForm
@@ -18,6 +19,7 @@ def post_detail(request, post_id):
     return render(request, "posts/post_detail.html", {"details": details})
 
 
+@csrf_exempt
 def post_create(request):
     post = Posts()
 

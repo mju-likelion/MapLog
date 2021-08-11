@@ -43,6 +43,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'users.apps.UsersConfig',
     'posts.apps.PostsConfig',
+    'mypage.apps.MypageConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

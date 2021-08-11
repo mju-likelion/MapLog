@@ -13,6 +13,9 @@ urlpatterns = [
     path("users/", include("users.urls", namespace="users")),
     # posts
     path("posts/", include("posts.urls", namespace="posts")),
+    # mypage
+    path("mypage/", include("mypage.urls", namespace="mypage")),
+
 ]
 
 if settings.DEBUG:

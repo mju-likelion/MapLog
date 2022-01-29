@@ -37,7 +37,7 @@ Location is automatically saved.
 
 <br>
 
-### 📍 작성한 로그 모아보기
+### 📍 View Logs
 
 <img src="https://user-images.githubusercontent.com/48925632/138536483-1e555034-6d9f-4e04-a5a1-98a7a1b44aa4.gif" alt="maplog_map_overview" />  
 User can find all of the logs through one entire map.

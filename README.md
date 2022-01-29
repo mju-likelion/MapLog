@@ -2,7 +2,7 @@
 
 ## Location based memory repository, MapLog!
 
-> Location, Feelings, Everything at that moment
+> Location, Feelings, Everything at that moment  
 > Do you want to save all of these into a map?  
 > Save your precious memories through MapLog!
 
@@ -21,7 +21,8 @@
 ### 📍 Search Location
 
 <img src="https://user-images.githubusercontent.com/48925632/138536910-df8deef6-189b-40e8-9293-22bc851e16af.gif" alt="maplog_search" />  
-User can search the location where user want to save the log.  
+User can search the location where user want to save the log.
+
 For user experience, user can search location with keywords not an exact address.
 
 <br>
@@ -29,7 +30,8 @@ For user experience, user can search location with keywords not an exact address
 ### 📍 Create Log
 
 <img src="https://user-images.githubusercontent.com/48925632/138536903-9943b432-da96-4caf-a99c-b862fdb3eaaf.gif" alt="maplog_write_log" />  
-User can click the marker or menu bar to create log.  
+User can click the marker or menu bar to create log.
+
 User can write title, date, music, feelings, log (description) and add a photo.  
 Location is automatically saved.
 
@@ -38,7 +40,8 @@ Location is automatically saved.
 ### 📍 작성한 로그 모아보기
 
 <img src="https://user-images.githubusercontent.com/48925632/138536483-1e555034-6d9f-4e04-a5a1-98a7a1b44aa4.gif" alt="maplog_map_overview" />  
-User can find all of the logs through one entire map.  
+User can find all of the logs through one entire map.
+
 Marker is located when user creates log and can view with clicking it.
 
 <br>
